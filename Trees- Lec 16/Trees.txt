@@ -1,0 +1,6 @@
+This Includes , Binary trees , Input output of trees using file , basic implementation
+1) Preorder
+2)Post Order
+3)Level order
+4) Height of a Tree
+5) Diameter of a tree
