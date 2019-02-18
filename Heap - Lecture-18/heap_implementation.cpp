@@ -3,6 +3,7 @@
 //Visualise as a tree
 //Heapify , compare the 3 elements and replace smallest element
 //if a node is existing in heap then index must be < v.size
+// Heap is a data structure - as array | visualized as tree - 
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -66,7 +67,7 @@ public:
 };
 
 int main()
-{   
+{   //Complete BT - filling start from left - 
     min_heap h1;
     int arr[] = {1,4,3,2,6,0,10,12};
     int n = sizeof(arr)/sizeof(int);
