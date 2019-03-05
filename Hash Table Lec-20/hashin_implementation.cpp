@@ -10,7 +10,23 @@
 //Node * is the data - and Hash Table - is the actual data structure
 #include<iostream>
 using namespace std;
-
+int prime(int n)
+{
+    for(int i=n;i<1000;i++)
+    { bool flag = true;
+        for(int j =2;j*j<i;j++)
+        {
+            if(i%j==0)
+            {
+                flag = false;
+            }
+        }
+        if(flag ==true)
+        {
+            return i;
+        }
+    }
+}
 template<typename T>
 class node{
 public:
@@ -23,6 +39,14 @@ public:
     {
         key = k;
         value = v;
+    }
+
+    ~node()
+    {
+        if(next!=NULL)
+        {
+            delete next;
+        }
     }
 
 
@@ -49,6 +73,39 @@ class hashtable{
          }
          return ans;
     }
+
+    // Rehash Function
+    void rehash()
+    {
+        node<T>**oldtable = bucket;
+        int oldsize = ts;
+        ts = 2*ts;
+        int primetablesize = prime(ts);
+        ts = primetablesize;
+        cs=0;
+        bucket = new node<T>*[ts];
+        // NuLL all the values in Bucket
+        for(int i=0;i<ts;i++)
+        {
+            bucket[i] = NULL;
+        }
+
+        // Copying Old values into new values;
+        for(int i=0;i<oldsize;i++)
+        {
+            node<T>* temp = oldtable[i];
+            while(temp!=NULL)
+            {
+                insert(temp->key,temp->value);
+                temp=temp->next;
+            }
+            // Delete the array alloted
+            delete oldtable[i];
+        }
+        delete [] oldtable;
+    }
+
+
 public:
     hashtable(int tablesize = 7)
     { 
@@ -70,7 +127,14 @@ public:
         node<T>* newnode = new node<T>(k,val);
         newnode->next = bucket[index];
         bucket[index] = newnode;
-
+        cs++;
+        // cout<<cs<<"Tablesize  "<<ts<<endl;
+        float loadfactor = (float)cs/ts;
+        // cout<<loadfactor;
+        if(loadfactor>=0.7)
+        {   cout<<"Rehashing is Used"<<loadfactor<<endl;
+            rehash();
+        }
     }
     void printTable()
     {
@@ -89,19 +153,46 @@ public:
             cout<<endl;
         }
     }
+    // This will return the address of the Val
+    T* search(string k)
+    {
+        //Index of bucket using - hash function- 
+        int i = hashfun(k);
+        node<T>*temp = bucket[i];
+        while(temp!=NULL)
+        {
+            if(temp->key==k)
+            {
+                return &(temp->value);  
+            }
+            temp=temp->next;
+        }
+        return NULL;
+    }
 
 };
 
 
 int main()
 {
-    hashtable<int> h(11);
+    hashtable<int> h(7);
     h.insert("Mango",100);
     h.insert("Banana",80);
     h.insert("Guava",120);
     h.insert("Apple",90);
-    h.insert("Orange",80);
-    h.insert("Grapes",60);
+     h.insert("Orange",80);
+     h.insert("Grapes",60);
     h.printTable();
+    string s;
+    cin>>s;
+    int* ans = h.search(s);
+    if(ans==NULL)
+    {
+        cout<<"Not Found";
+    }
+    else
+    {
+        cout<<"Found:  "<<*ans;
+    }
     return 0;
 }
