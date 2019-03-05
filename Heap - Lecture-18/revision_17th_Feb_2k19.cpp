@@ -97,7 +97,21 @@ int main()
     //Queues - value enter - % cs - cs se bada nhi ho sakta index -
     // Stack using two queues , and stack using a single queue - 
 
+   //TREES - Heirarichal data structure - nodes - ROOT node
+   // binary tree- two child - left and right  
+    // preorder , postorder , levelorder , inorder - 
+   // Diameter - Largest distance between two nodes , 
+   // o(n^2) - option 1 , option 2 option 3 - 
+   // O(n) - Postorder traversal - 
 
+    // Sum maximise - such that - node included - direct children X and parent 
 
+   // Generic trees - nchild array - noofchildren - 
+   // Largest - root val - Nchildren se loop mein comparison - 
+   // 
+   //BST - is a special type of tree which maintains an order - 
+   //left node is always less than the root node - 
+   // make every ith node as the root node - 
+   // 
     return 0;
 }
