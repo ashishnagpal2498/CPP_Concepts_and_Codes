@@ -174,11 +174,7 @@ public:
     {
         int index = hashfun(k);
         node<T>*temp = bucket[index];
-        if(temp==NULL)
-        {
-            cout<<"Key not present"<<endl;
-            return;
-        }
+
         // Find that node and delete it;
         if(temp->key==k)
         {
@@ -195,11 +191,6 @@ public:
         {
             prev = temp;
             temp = temp->next;
-        }
-        if(temp==NULL)
-        {
-            cout<<"Key not Found"<<endl;
-            return;
         }
         prev->next = temp->next;
         temp->next = NULL;
@@ -231,11 +222,15 @@ int main()
 {
     hashtable<int> h(7);
     h.insert("Mango",100);
-    h.insert("Banana",80);
-    h.insert("Guava",120);
-    h.insert("Apple",90);
-     h.insert("Orange",80);
+    h.printTable();
+    h["Mango"] = 80;
+    h["Apple"] = 120;
+    // h.insert("Banana",80);
+    // h.insert("Guava",120);
+    // h.insert("Apple",90);
+    //  h.insert("Orange",80);
      h.insert("Grapes",60);
+     cout<<"Table 2";
     h.printTable();
     string s;
     cin>>s;
