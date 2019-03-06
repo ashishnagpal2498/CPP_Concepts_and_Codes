@@ -8,6 +8,7 @@
 //Linked list should be of fixed length 
 //Possible Hash Functions prime number vala 37*i Submission of 
 //Node * is the data - and Hash Table - is the actual data structure
+// 
 #include<iostream>
 using namespace std;
 int prime(int n)
@@ -169,6 +170,33 @@ public:
         }
         return NULL;
     }
+    void pop(string k)
+    {
+        int index = hashfun(k);
+        node<T>*temp = bucket[index];
+
+        // Find that node and delete it;
+        if(temp->key==k)
+        {
+            // First node par hi present hai - 
+            node<T>*waste = temp;
+            bucket[index] = temp->next;
+            // recursive delete will delete all the other node also
+            waste->next = NULL;
+            delete waste;
+            return;
+        }
+        node<T>*prev = NULL;
+        while(temp!=NULL&&temp->key!=k)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+        prev->next = temp->next;
+        temp->next = NULL;
+        // deleting temp
+        delete temp;
+    }
 
 };
 
@@ -188,11 +216,16 @@ int main()
     int* ans = h.search(s);
     if(ans==NULL)
     {
-        cout<<"Not Found";
+        cout<<"Not Found"<<endl;
     }
     else
     {
-        cout<<"Found:  "<<*ans;
+        cout<<"Found:  "<<*ans<<endl;
     }
+    cout<<"Enter the key to be deleted"<<endl;
+    cin>>s;
+    h.pop(s);
+    cout<<endl;
+    h.printTable();
     return 0;
 }
