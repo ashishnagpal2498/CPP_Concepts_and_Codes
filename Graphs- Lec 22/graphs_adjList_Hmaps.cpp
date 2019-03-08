@@ -1,6 +1,7 @@
 //Graphs Using Hash-Maps
 #include<iostream>
 #include<map>
+#include<queue>
 #include<list>
 using namespace std;
 template<typename T>
@@ -24,13 +25,42 @@ public:
     {
         for(auto i:myAdjList)
         {
-            // i is basically iterating over index of buckets
+            // i is basically iterating over index of buckets 
+
             cout<<i.first<<" -> ";
             for(auto vertix:i.second)
             {
                 cout<<vertix<<" , ";
             }
             cout<<endl;
+        }
+    }
+
+    // BFS using adjancy list and Hash-Map
+    void bfs(T src)
+    {
+        map<T,bool> visited;
+        queue<T> q1;
+
+        q1.push(src);
+        visited[src] = true;
+
+        // Now check for all the neighbours of src node;
+        while(!q1.empty())
+        {
+            T val = q1.front();
+            q1.pop();
+            cout<<val<<"  ";
+
+            // Neighbours
+            for(auto neigh:myAdjList[val])
+            {
+                if(!visited.count(neigh))
+                {
+                    visited[neigh] = true;
+                    q1.push(neigh);
+                }
+            }
         }
     }
 
@@ -47,6 +77,7 @@ int main()
   g.addEdge("Yogi","Modi");
 
     g.printAdjList();
-
+    cout<<endl;
+    g.bfs("Modi");
     return 0;
 }
