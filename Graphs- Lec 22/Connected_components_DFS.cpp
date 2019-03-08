@@ -41,6 +41,18 @@ public:
         map<T,bool> visited;
         dfsHelper(s,visited);
         // Traverse the adj list
+        int component = 1;
+        cout<<endl;
+        for(auto i:adjList)
+        {
+            T city = i.first;
+            if(!visited[city])
+            {    //This helps in visiting nodes in graph which are not connected
+                dfsHelper(city,visited);
+                component++;
+            }
+        }
+        cout<<endl<<"The connected components are "<<component;
     }
 };
 int main()
