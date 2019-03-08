@@ -102,7 +102,16 @@ public:
             cout<<"Distance of "<<node<<" From source node  "<<s<<" is  "<<dist[node]<<endl;
         }
 
+        //Need to find the path
+        cout<<endl<<"Path is   ";
+        for(;d!=s;)
+        {   
+            cout<<d<<"  ";
+            d = parent[d];
             // return destination node distance
+        }
+        cout<<s<<" ";
+
     return dist[d];
     }
 
