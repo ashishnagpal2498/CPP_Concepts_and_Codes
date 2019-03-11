@@ -74,7 +74,7 @@ public:
         map<T,T> parent;
         // Making all other values as INFINITY
         for(auto i:adjList)
-        {
+        {   
             dist[i.first] = INT_MAX;
         }
         q1.push(s);

@@ -1,4 +1,5 @@
 // Graphs Implementation
+// Degree - Indegree , outdegree 
 //Video Lectures - 
 //Edge Rank Algorithm
 //Network latency - Bellman Ford algo
