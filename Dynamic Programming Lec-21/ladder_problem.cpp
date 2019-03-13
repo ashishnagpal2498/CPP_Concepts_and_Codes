@@ -60,6 +60,7 @@ int wayskBottomUpDp(int n,int k)
         }
     }
     return dp[n];
+    //O(kn) -  complexity
 }
 
 int main()
