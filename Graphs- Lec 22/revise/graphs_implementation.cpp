@@ -253,6 +253,44 @@ public:
         }
         return false;
     }
+    //Cycle detection - Directed Graph
+
+    bool dfs_Helper_cycle(T src,map<T,bool> &visited, map<T,bool> inStack)
+    {
+        visited[src] = true;
+        inStack[src] = true;
+        //Check for all the neighbours
+        for(T neigh:adjList[src])
+        {
+            //There could be two possibility - 
+            //1) either the node is not visited but could be the possible path
+            //for a cycle then - 
+            //2) The neigh is already present inStack
+            if((!visited[neigh]&&dfs_Helper_cycle(neigh,visited,inStack))||inStack[neigh])
+            {
+                return true;
+            }
+        }
+        //Pop out the node from the stack
+        inStack[src] = false;
+        return false;
+    }
+
+    bool cycle_detection_Directed()
+    {
+        map<T,bool> visited;
+        map<T,bool> inStack;
+        for(auto i:adjList)
+        {
+            T node = i.first;
+            if(!visited[node])
+            {
+               bool isCyclic = dfs_Helper_cycle(node,visited,inStack);
+                if(isCyclic) return true;
+            }
+        }
+        return false;
+    }
 
 };
 int main()
@@ -291,6 +329,16 @@ int main()
 
     g.cycle_Undirected(1) ? cout<<"Cycle present \n" : cout<<"Acyclic \n";
 
+    Graph<int> g_cycle;
+    g_cycle.addEdge(0,1,false);
+    g_cycle.addEdge(0,2,false);
+    g_cycle.addEdge(2,3,false);
+    g_cycle.addEdge(2,4,false);
+   // g_cycle.addEdge(3,0,false);
+    g_cycle.addEdge(4,5,false);
+    g_cycle.addEdge(1,5,false);
+
+    g_cycle.cycle_detection_Directed() ? cout<<"Cycle Exist\n" : cout<<"Not present\n";
     // Input 1
     // g1.addEdge(1,0);
     // g1.addEdge(2,3);
