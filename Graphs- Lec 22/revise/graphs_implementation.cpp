@@ -2,6 +2,7 @@
 #include<iostream>
 #include <map>
 #include <list>
+#include <set>
 #include <queue>
 using namespace std;
 //Graphs can be implemented using adjancy matrix edge list and adjancey list
@@ -27,6 +28,7 @@ class Graph{
     //either take a Adjancey list map<
     //
     map<T,list<T> > adjList;
+    map<T,list< pair<T,int> > > dijAdjList;
 public:
     Graph(int n)
     {
@@ -45,6 +47,83 @@ public:
         if(bidir)
         {
             adjList[v].push_back(u);
+        }
+    }
+    void addEdge2(T u ,T v, int dist, bool bidir= true)
+    {
+        dijAdjList[u].push_back(make_pair(v,dist));
+        if(bidir)
+        {
+        dijAdjList[v].push_back(make_pair(u,dist));
+
+        }
+    }
+
+    void printAdjList()
+    {
+        for(auto i:dijAdjList)
+        {   
+            cout<<i.first<<" -> ";
+            //i is a list of pair -
+            for(auto p:i.second)
+            {
+                cout<<p.first<<" - "<<p.second<<"  ";
+            }
+        cout<<endl;
+        }
+
+    }
+
+    void dijikstra(T src)
+    {
+        map<T,int> dist;
+        set<pair<int,T> > s1;
+        //Initialize all the nodes with 0;
+        for(auto i:dijAdjList)
+        {
+            T node = i.first;
+            dist[node] = INT_MAX;
+        }
+        // cout<<endl;
+        // for(auto d:dist)
+        // {   cout<<"Inside \n";
+        //     cout<<d.first<<" distance  "<<d.second<<endl;
+        // }
+        dist[src] = 0;
+        s1.insert(make_pair(0,src));
+        while(!s1.empty())
+        {   
+            auto top_node_pair = *(s1.begin());
+            //Relax all the neighbours 
+            T node = top_node_pair.second;
+            int node_distance = top_node_pair.first;
+            
+            s1.erase(s1.begin());
+
+            for(auto neigh: dijAdjList[node])
+            {   T neighbour_node = neigh.first;
+                int neigh_edge_dist = neigh.second;
+                int smalldist = node_distance + neigh_edge_dist;
+                if(smalldist < dist[neighbour_node] )
+                {
+                    //Update the node distance - 
+                   
+                    auto f = s1.find(make_pair(dist[neighbour_node],neighbour_node));
+                    if(f!=s1.end())
+                    {
+                        s1.erase(f);
+                    } 
+
+                     dist[neighbour_node] = smalldist;
+                     s1.insert(make_pair(smalldist,neighbour_node));
+                }
+
+            }
+        }
+        //Print distance of all the cities -
+        for(auto d:dist)
+        {   cout<<"city  ";
+            cout<<d.first<<" distance  "<<d.second<<endl;
         }
     }
     // void Bfs(T src)
@@ -292,6 +371,8 @@ public:
         return false;
     }
 
+    //Dijikstra's Algorithm - single source shortest path for 
+
 };
 int main()
 {   //int n;
@@ -339,6 +420,22 @@ int main()
     g_cycle.addEdge(1,5,false);
 
     g_cycle.cycle_detection_Directed() ? cout<<"Cycle Exist\n" : cout<<"Not present\n";
+   
+
+    // Dijistra algorithm 
+     Graph<string> india;
+    india.addEdge2("Amritsar","Delhi",1);
+    india.addEdge2("Amritsar","Jaipur",4);
+    india.addEdge2("Jaipur","Delhi",2);
+    india.addEdge2("Jaipur","Mumbai",8);
+    india.addEdge2("Bhopal","Agra",2);
+    india.addEdge2("Bhopal","Mumbai",3);
+    india.addEdge2("Delhi","Agra",1);
+
+    india.printAdjList();
+    cout<<endl;
+    india.dijikstra("Amritsar");
+
     // Input 1
     // g1.addEdge(1,0);
     // g1.addEdge(2,3);
