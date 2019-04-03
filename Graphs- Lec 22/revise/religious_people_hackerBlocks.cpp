@@ -3,6 +3,8 @@
 #include<list>
 #include<map>
 using namespace std;
+//Using AdjList - of array type -
+
 int A,B;
 class Graph{
     list<int>* adjList;
@@ -48,7 +50,7 @@ public:
                     ans+=B;
                 }
                 else
-                {
+                {   //Creating a temple - 
                     ans+=A;
                 }
                 dfsHelper(neigh,visited,ans);
@@ -60,9 +62,11 @@ public:
         map<int,bool> visited;
        long long int ans = 0;
         for(int i = 1;i<=n;i++)
-        {   
+        {   //If the node isn't visited then -
             if(!visited[i])
-            {   ans+=A;
+            {   //Every Component will have atleast one temple in
+                //
+                ans+=A;
                 dfsHelper(i,visited,ans);
             }
         }
