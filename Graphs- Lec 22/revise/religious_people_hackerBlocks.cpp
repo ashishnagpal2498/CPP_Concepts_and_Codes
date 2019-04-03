@@ -5,15 +5,28 @@
 using namespace std;
 int A,B;
 class Graph{
-    map<int,list<int > > adjList;
+    list<int>* adjList;
 public:
     Graph(int n)
-    {
-        for(int i=1;i<=n;i++)
-        {
-            adjList[i].push_back(INT_MAX);
-        }
+    {   adjList = new list<int>[n+1];
+        // for(int i=1;i<=n;i++)
+        // {
+        //     adjList[i].push_back(INT_MAX);
+        // }
     }
+    // void printGraph()
+    // {
+    //     for(auto i:adjList)
+    //     {
+    //         int Node = i.first;
+    //         cout<<Node<<" ->  ";
+    //         for(int neigh:adjList[Node])
+    //         {
+    //             cout<<neigh<<" ";
+    //         }
+    //         cout<<endl;
+    //     }
+    // }
     void addEdge(int u,int v,bool bidir=true)
     {
         adjList[u].push_back(v);
@@ -22,12 +35,12 @@ public:
             adjList[v].push_back(u);
         }
     }
-    void dfsHelper(int node, map<int,bool> &visited,int &ans)
+    void dfsHelper(int node, map<int,bool> &visited,long long int &ans)
     {   
         visited[node] = true;
         for(auto neigh:adjList[node])
         {   
-            if(!visited[neigh]&&neigh!=INT_MAX)
+            if(!visited[neigh])
             {
                 if(A>=B)
                 {
@@ -42,15 +55,15 @@ public:
             }
         }
     }
-    int dfs(int src)
+   long long int dfs(int n)
     {
         map<int,bool> visited;
-        int ans = 0;
-        for(auto i:adjList)
-        {   int node = i.first;
-            if(!visited[node])
+       long long int ans = 0;
+        for(int i = 1;i<=n;i++)
+        {   
+            if(!visited[i])
             {   ans+=A;
-                dfsHelper(node,visited,ans);
+                dfsHelper(i,visited,ans);
             }
         }
         return ans;
@@ -69,7 +82,8 @@ int main()
             cin>>u>>v;
             g.addEdge(u,v,false);
         }
-        cout<<g.dfs(1)<<endl;
+        cout<<g.dfs(N)<<endl;
+        //g.printGraph();
     }
     return 0;
 }
