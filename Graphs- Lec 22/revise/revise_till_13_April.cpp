@@ -8,4 +8,7 @@
 //Number of lines input - 
 // Programming Paradigms - How you write code - 
 // OOPS concept - data abstraction , encapsulation modularity poly , inher
+//CPP - Live Basic - 
+//Square root till p places - 
+//Left shift = cout - a * 2^b;
 //
