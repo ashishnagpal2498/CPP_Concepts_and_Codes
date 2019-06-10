@@ -82,6 +82,53 @@ int main()
     //3) Stack - LIFO 
     //  Implementation of Stack -
     //Reverse a Stack -   
+    //Balanced Parenthesis
+    //Redundant Parenthesis
+
+    //4) Queues - FIFO technique
+    // cs == ms - FULL else (rear+1)%ms
+    //Reverse a Queue
+    //Implementation of stack using a Queue and 2 Queues
+
+    
+    //5)TREES 
+    //i) Generic Tree
+    //Any number of children can be there in the generic tree-
+    // data , noOfChild Nchild pointer -
+    //createTree - data - != -1 then node exist -
+    //No of children - enter - 
+    //create new node 
+    //for loop - Recursion - 
+
+    //ii) Binary Tree
+        //a) Two children - left right -
+        //b) Preorder - PostOrder , LevelOrder - Inorder
+        //c) Construct a tree using Preorder and Inorder -
+        //d) Height of tree - Root ke left , root -> right 1 + max()
+        //e) Diameter of a TREE -
+        //f) VIEWS OF TREE - TOP LEFT  
+    //iii) BST
+        //a) Special type of Binary tree - insertion - left small - right node greater
+        //b) Balanced Tree -
+        //c) No. of BST - Catalan's number -
+        //d) Deletion in BST
+        //e) Sorted Array - create a Balanced BST
+        //f) Check if a tree is BST or not - 
+
+    //6) HEAP - It is a data structure similar to BT but stores data in form of array
+        //i) Complete binary Tree - filling left to right
+        //ii) Insertion , Deletion (Heapify) 
+        //iii) Functional Comparator - FunTor -
+
+    //7) Hashing - key-value pairs - store 
+
+    //8) Graphs 
+
+    //9) DP
+
+    
+
+
 
     return 0;
 }
