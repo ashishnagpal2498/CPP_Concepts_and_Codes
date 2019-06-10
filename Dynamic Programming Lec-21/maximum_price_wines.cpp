@@ -35,12 +35,12 @@ int max_Price_BU(int* wines,int i , int j , int day)
         dp[i][i] = wine[i] * j;
     }
     for(int n=0;n<j;n++)
-    {
+    {                                                   
         for(int m=n+1;m<j;m++)
         {
             if(n<=m)
-            {
-                dp[n][m] = min()
+            {   int ans1 = wine[n]*
+                dp[n][m] = max()
             }
         }
     }

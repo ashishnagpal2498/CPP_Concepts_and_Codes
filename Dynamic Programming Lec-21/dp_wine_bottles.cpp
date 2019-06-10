@@ -32,7 +32,7 @@ int Maxprofit_Bottom_Up(int *arr,int n)
 
         while(srt<=end)
         {
-            int endofwindow = srt + len;
+            int endofwindow = srt + len -1;
             dp[srt][endofwindow] = max(
                 arr[srt]*year + dp[srt+1][endofwindow],
                 arr[end]*year + dp[srt][endofwindow-1]
