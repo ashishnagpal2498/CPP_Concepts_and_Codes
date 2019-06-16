@@ -7,11 +7,11 @@ int pivot_element(int arr[],int s,int e)
     while(s<=e)
     {
         mid = (s+e)/2;
-        if(arr[mid]>arr[mid+1])
+        if(arr[mid]>arr[mid+1]&&mid<e)
         {
             return mid;
         }
-        else if(arr[mid]<arr[mid-1])
+        else if(arr[mid]<arr[mid-1]&&mid>s)
         {
             return mid-1;
         }
