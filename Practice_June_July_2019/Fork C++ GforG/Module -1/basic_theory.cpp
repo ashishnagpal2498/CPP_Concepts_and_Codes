@@ -48,5 +48,21 @@ int main()
     cout<<endl<<lval<<endl;
     lval = 20;
     cout<<lval;
+    cout<<endl;
+    cout<<"Execute both the if and else statements  ";
+    if(1)
+    {
+        label1 : cout<<"Hello";
+
+        goto label2;
+    }
+    else
+    {
+        goto label1;
+        
+        label2 : cout<<" Geeks ";
+
+
+    }
     return 0;
 }
