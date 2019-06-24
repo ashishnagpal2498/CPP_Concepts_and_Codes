@@ -3,7 +3,7 @@
 using namespace std;
 int main()
 {
-   unsigned long long int arr[10005];
+   unsigned long long int arr[100005];
     // int cnt =0;
     // int carry =0;
     int n;

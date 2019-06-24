@@ -18,8 +18,13 @@ void array_sum(int *a,int n,int*b,int m)
     {
         c[k++] = a[i--];
     }
+    //Case of carry - if there is extra carry -
+    if(carry!=0)
+    {
+        c[k++]=carry;
+    }
     for(int l = k-1;l>=0;l--)
-    {cout<<c[l]<<" ";}  
+    {cout<<c[l]<<", ";}  
     cout<<"END";
 }
 int main()
