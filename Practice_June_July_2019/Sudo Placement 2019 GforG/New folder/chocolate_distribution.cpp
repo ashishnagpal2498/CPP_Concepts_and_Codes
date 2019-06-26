@@ -3,8 +3,12 @@
 #include<algorithm>
 using namespace std;
 int main()
-{
-    int n;
+{   
+    int T;
+    cin>>T;
+
+    while(T--)
+   { int n;
     cin>>n;
    long long int arr[100005];
    for(int i=0;i<n;i++)
@@ -15,11 +19,17 @@ int main()
    int m;
    cin>>m;
    long long int min = 100000000;
-   for(int i=m-1;i<n;i++)
-    { 
-        long long int small_ans = arr[i] - arr[i-m];
-        min=  small_ans < min ? small_ans : min; }
+   long long int smallans;
+   for(int i=0;i<=n-m;i++)
+    { smallans = arr[m+i-1]-arr[i];
+       // cout<<smallans<<endl;
+        if(smallans<min)
+            min = smallans;
+
+    }
    // cout<<arr[m-1] - arr[0]<<endl;
         cout<<min;
+    cout<<endl;
+    }
     return 0;
 }
