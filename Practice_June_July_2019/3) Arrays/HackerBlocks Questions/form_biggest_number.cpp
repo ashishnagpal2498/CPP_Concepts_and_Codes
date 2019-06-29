@@ -16,7 +16,7 @@ int main()
         int n;
         cin>>n;
         string s;
-        // cin.get();
+        cin.get();
         for(int i=0;i<n;i++) 
             { cin>>s;
                 str.push_back(s);
