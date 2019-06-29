@@ -92,19 +92,24 @@ int linear_Search(int *arr,int n,int element)
     }
     return 1+ chotta_array;
 }
+int dp[100] = {0};
 int staircase(int n)
 {
     if(n<0)
-    {
+    {   
         return 0;
     }
     if(n==0) return 1;
+    if(dp[n]!=0)
+    {
+        return dp[n];
+    }
 
     int case1 = staircase(n-1);
     int case2 = staircase(n-2);
     int case3 = staircase(n-3);
-    return case1+case2+case3;
-
+    dp[n] = case1+case2+case3;
+    return dp[n];
 }
 int staircase_prob(int n,int k)
 {
