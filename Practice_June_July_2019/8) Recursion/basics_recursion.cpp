@@ -46,6 +46,7 @@ bool isSorted(int*arr,int n)
 
 bool isSorted_end(int *arr,int n)
 {
+    //base case -
     if(n==1)
         return true;
     bool ans = isSorted_end(arr+1,n-1);
