@@ -21,6 +21,7 @@ int fact(int n)
     {
         return 1;
     }
+    //recursive case
     return n * fact(n-1);
 }
 bool isSorted(int*arr,int n)
