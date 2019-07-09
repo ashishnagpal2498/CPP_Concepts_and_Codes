@@ -18,7 +18,7 @@ void tower_of_hanoi(int n,char start,char destination,char helper)
 }
 int main(int argc, char const *argv[])
 {
-    char start ='A',helper='B',destination='C';
+    char start ='A',helper='C',destination='B';
     int n;
     cin>>n;
     // for(int i=n;i<0;i--)
