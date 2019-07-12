@@ -13,12 +13,18 @@
 #include<iostream>
 using namespace std;
 int main()
-{   int n=10;
+{   int n=4;
     cout<<n<<endl;
     for(int i=0;i<n;i++)
     {
         int arr[100];
         cout<<arr<<endl;
+    }
+    for(int i=0;i<n;i++)
+    {
+        int *arr = new int[n];
+        cout<<arr<<endl;
+        delete [] arr;
     }
     return 0;
 }
