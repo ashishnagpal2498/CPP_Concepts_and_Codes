@@ -50,7 +50,7 @@ int main()
     C.print();
 
     //Creating a Car on heap memory -
-    Car *dc = new Car("Audi",1020);
+    Car *dc = new Car("CB Audi",1020);
     (*dc).print();
 
     delete dc;
