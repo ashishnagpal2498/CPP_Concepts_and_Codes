@@ -61,7 +61,6 @@ void mergeSort(int*arr,int start,int end)
      merge(arr,start,mid,end);
     }
 }
-
 int main(int argc, char const *argv[])
 {   
     int arr[100005];
