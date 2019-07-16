@@ -161,6 +161,33 @@ node* reverseLL_Recursion(node*head)
     head->next = NULL;
     return nhead;
 }
+node* cycleDetection(node*head)
+{
+    node*slow = head;
+    node*fast = head;
+    int i=1;
+    while(fast!=slow&&i>=0)
+    {   if(i==1){ i=0;}
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    //reset the slow 
+    slow = head;
+    while(slow!=fast)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
+}
+node* tailNode(node*head)
+{
+    while(head->next!=NULL)
+    {
+        head=head->next;
+    }
+    return head;
+}
 int main()
 {
     node*head = NULL;
@@ -183,15 +210,21 @@ int main()
     // node*head2 = NULL;
     // node* ans = NULL;
     cin>>head;
-    cout<<head<<endl; //<<head2<<endl;
-    head = mergeSort(head);
+    //cout<<head<<endl; //<<head2<<endl;
+    // head = mergeSort(head);
 
-    cout<<head<<endl;
-    cout<<"REVERSE IS  ";
-    reverseLL_Iteration(head);
-    cout<<head<<endl;
-    cout<<"RECURSIVE REVERSE "<<endl;
-    head = reverseLL_Recursion(head);
-    cout<<head<<endl;
+    // cout<<head<<endl;
+    // cout<<"REVERSE IS  ";
+    // reverseLL_Iteration(head);
+    // cout<<head<<endl;
+    // cout<<"RECURSIVE REVERSE "<<endl;
+    // head = reverseLL_Recursion(head);
+    // // cout<<head<<endl;
+     node * tail = tailNode(head);
+        
+    tail->next = head->next->next;
+     node* cyclePoint = cycleDetection(head);
+    cout<<cyclePoint->data<<endl;
+    //cout<<head;
     return 0;
 }

@@ -40,12 +40,12 @@ void merge(int*arr,int start,int mid,int end)
     {
         arr[k++] = temp2[j++];
     }
-    cout<<"C ---   "; 
-    for(int i=0;i<n1+n2;i++)
-    {
-        cout<<arr[i]<<"  ";
-    }
-    cout<<endl;
+    // cout<<"C ---   "; 
+    // for(int i=0;i<n1+n2;i++)
+    // {
+    //     cout<<arr[i]<<"  ";
+    // }
+    // cout<<endl;
     // return c;
 }
 void mergeSort(int*arr,int start,int end)
@@ -63,7 +63,7 @@ void mergeSort(int*arr,int start,int end)
 }
 int main(int argc, char const *argv[])
 {   
-    int arr[100005];
+    int arr[200005];
     int n;
     cin>>n;
     for(int i=0;i<n;i++) cin>>arr[i]; 
