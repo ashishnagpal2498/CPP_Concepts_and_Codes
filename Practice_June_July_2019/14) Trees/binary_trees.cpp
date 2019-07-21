@@ -84,14 +84,45 @@ int height(node*root)
 {
     if(root==NULL) return 0;
 
-    if(root->left==NULL&&root->right==NULL)
-    {
-        //It is a leaf NOde -
-        return 1;
-    }
+    // if(root->left==NULL&&root->right==NULL)
+    // {
+    //     //It is a leaf NOde -
+    //     return 1;
+    // }
     int h1 = height(root->left);
     int h2 = height(root->right);
     return 1+ max(h1,h2);
+}
+class myPair{
+public:
+    int height;
+    int diameter;
+};
+myPair fastDiameter(node*root)
+{
+    myPair p;
+    if(root==NULL)
+    {
+        p.height =0;
+        p.diameter =0;
+        return p;
+    }
+    myPair leftTree = fastDiameter(root->left);
+    myPair rightTree = fastDiameter(root->right);
+
+    int h1 = leftTree.height;
+    int h2 = rightTree.height;
+
+    int d1 = leftTree.diameter;
+    int d2 = leftTree.diameter;
+
+    p.diameter = max(h1+h2,max(d1,d2));
+    p.height = max(h2,h1) +1;
+
+    return p;
+   // leftTree.height > rightTree.height ? leftTree.height : rightTree.height;
+
+
 }
 int diameter(node*root)
 {
@@ -99,11 +130,41 @@ int diameter(node*root)
     {
         return 0;
     }
-    int opt1 = height(root);
+    int opt1 = height(root->left) + height(root->right);
     int opt2 = diameter(root->left);
     int opt3 = diameter(root->right);
     return max(opt1,max(opt2,opt3));
 }
+
+class myPair2{
+public:
+    int excl;
+    int incl;
+    myPair2()
+    {
+        excl =0; incl =0;
+    }
+};
+
+myPair2 subsetSum(node*root)
+{   myPair2 p;
+    if(root==NULL)
+    {
+        return p;
+    }
+
+    myPair2 leftTree = subsetSum(root->left);
+    myPair2 rightTree = subsetSum(root->right);
+
+    //Check -
+    p.incl = root->data + leftTree.excl+rightTree.excl;
+    p.excl = max(leftTree.incl,leftTree.excl) + max(rightTree.incl,rightTree.excl);
+
+    return p;
+
+}
+
+
 int main()
 {
     node* root = NULL;
@@ -114,5 +175,9 @@ int main()
     levelOrderTraversal(root);
     cout<<height(root)<<endl;
     cout<<diameter(root)<<endl;
+    myPair ans = fastDiameter(root);
+    cout<<ans.diameter<<endl;
+    myPair2 ans2 = subsetSum(root);
+    cout<<max(ans2.excl,ans2.incl)<<endl;
     return 0;
 }
