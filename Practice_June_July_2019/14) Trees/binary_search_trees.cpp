@@ -192,6 +192,7 @@ node* balancedBst(int*arr,int s,int e)
     return root;
 }
 
+//Is a given Tree BST or not
 bool isBst(node*root,int upperBound=1000000,int lowerBound=-1000000)
 {
     if(root==NULL) return true;
@@ -203,6 +204,55 @@ bool isBst(node*root,int upperBound=1000000,int lowerBound=-1000000)
     return false;
 }
 
+//Flattening A BST - Linked List -
+//
+class LinkedList{
+public:
+    node*head;
+    node*tail;
+    LinkedList()
+    {
+        head = tail = NULL;
+    }
+};
+LinkedList myLinkedList(node*root)
+{   LinkedList l;
+    if(root==NULL)
+    {
+        return l;
+    }
+    else if(root->left==NULL&&root->right==NULL)
+    {
+        l.head = root;
+        l.tail = root;
+    }
+    else if(root->left!=NULL&&root->right==NULL)
+    {
+        LinkedList leftTree = myLinkedList(root->left);
+        leftTree.tail->right = root;
+        l.head = leftTree.head;
+        l.tail = root;
+    }
+    else if(root->left==NULL&&root->right!=NULL)
+    {
+        LinkedList rightTree = myLinkedList(root->right);
+        root->right = rightTree.head;
+        l.head = root;
+        l.tail = rightTree.tail;
+    }
+    else
+    {
+        //both node exist -
+        LinkedList leftTree = myLinkedList(root->left);
+        LinkedList rightTree = myLinkedList(root->right);
+        leftTree.tail->right = root;
+        root->right = rightTree.head;
+        l.head = leftTree.head;
+        l.tail = rightTree.tail;
+
+    }
+    return l;
+}
 
 int main(int argc, char const *argv[])
 {
@@ -225,5 +275,12 @@ int main(int argc, char const *argv[])
     printTree(root2);
     cout<<endl;
     isBst(root2) ? cout<<"YES IT IS BST "<<endl : cout<<"IT IS NOT A BST "<<endl;
+   LinkedList ans = myLinkedList(root2);
+   while(ans.head!=NULL)
+   {
+    cout<<ans.head->data<<"  ";
+    ans.head = ans.head->right;
+   }
+   cout<<"\nEnd of LL"<<endl;
     return 0;
 }
