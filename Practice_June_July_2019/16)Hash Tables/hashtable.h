@@ -53,6 +53,9 @@ public:
         node<T>* n = new node<T>(s,v);
         n->next = bucket[index];
         bucket[index] = n;
+        cs++
+        //Calculate Load factor 
+        //rehash - 
     }
     void print()
     {
