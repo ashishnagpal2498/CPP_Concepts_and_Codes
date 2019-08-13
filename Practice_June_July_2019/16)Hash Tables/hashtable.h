@@ -14,6 +14,13 @@ public:
         value = v;
         next = NULL;
     }
+    ~node()
+    {
+        if(next!=NULL)
+        {
+            delete next;
+        }
+    }
 };
 template<typename T>
 class hashtable{
@@ -34,6 +41,35 @@ class hashtable{
         }
         return ans;
     }
+    void rehash()
+    {
+        node<T>**oldBucket = bucket;
+        int oldTs = ts;
+        ts = ts*2;
+        cs =0;
+        bucket = new node<T>*[ts];
+        // initialize all the arrays to NULL
+        for(int i=0;i<ts;i++)
+        {
+            bucket[i] = NULL;
+        }
+        for(int i=0;i<oldTs;i++)
+        {
+            node<T>* temp = oldBucket[i];
+            while(temp!=NULL)
+            {
+                insert(temp->key,temp->value);
+                temp = temp->next;
+            }
+            //Delete old bucket 
+            delete oldBucket[i];
+        }
+        // for(int i=0;i<oldTs;i++)
+        // {
+        //     delete oldBucket[i];
+        // }
+        delete [] oldBucket;
+    }
 public:
     hashtable(int ds=7)
     {
@@ -53,16 +89,21 @@ public:
         node<T>* n = new node<T>(s,v);
         n->next = bucket[index];
         bucket[index] = n;
-        cs++
+        cs++;
         //Calculate Load factor 
         //rehash - 
+        float loadfactor = (float) cs/ts;
+        if(loadfactor>=0.7)
+        {   cout<<"Rehash"<<endl;
+            rehash();
+        }
     }
     void print()
     {
         for(int i=0;i<ts;i++)
         {
             node<T>* temp = bucket[i];
-            cout<<"BUCKET "<<i<<endl;
+            cout<<"BUCKET "<<i<<"-> ";
             while(temp!=NULL)
             {
                 cout<<temp->key<<" ";
