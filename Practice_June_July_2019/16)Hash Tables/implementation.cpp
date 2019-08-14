@@ -14,6 +14,7 @@ int main(int argc, char const *argv[])
     h1.insert("Banana",700);
     h1.insert("Guava",400);
      h1.insert("Orange",200);
+     h1["Peach"];
     h1.print();
     cout<<"ENTER ELEMENT TO BE SEARCHED "<<endl;
     string s;
@@ -27,5 +28,7 @@ int main(int argc, char const *argv[])
     {
         cout<<"NOT FOUND"<<endl;
     }
+    cout<< h1["Apple"]<<endl;
+
     return 0;
 }

@@ -126,4 +126,18 @@ public:
         }
         return NULL;
     }
+     T& operator[](string k)
+    {
+        T* temp = search(k);
+        if(temp==NULL)
+        {   
+            T garbage;
+            insert(k,garbage);
+
+            temp = search(k);
+
+        }
+        //by reference the value is returned;
+        return *temp;
+    }
 };
