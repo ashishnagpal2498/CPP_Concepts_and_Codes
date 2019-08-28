@@ -6,9 +6,9 @@ int main(int argc, char const *argv[])
     string s;
     cin>>s;
     int p=1;
-    int ans=0;
-    int len = s.length();
-    for(int i=0;i<len;i++)
+   long long int ans=0;
+    long long int len = s.length();
+   while()
     {
         ans+= ((int) (s[len-i-1] -'0'))*p;
         p=p*2;

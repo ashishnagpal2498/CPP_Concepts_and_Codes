@@ -1,6 +1,7 @@
 //verticle order print Binary Tree
 #include <iostream>
 #include<map>
+#include<queue>
 #include<vector>
 using namespace std;
 class node{
@@ -25,6 +26,36 @@ void buildTree(node*&root)
     }
     return;
 }
+//Level order input -
+void levelOrderInput(node*&root)
+{
+    queue<node*> q1;
+    int d;
+    cin>>d;
+    if(d!=-1)
+    {
+        root = new node(d);
+        q1.push(root);
+    }
+    int c1,c2;
+    while(!q1.empty())
+    {
+        node* f = q1.front();
+        q1.pop();
+        cin>>c1;
+        if(c1!=-1)
+        {
+            f->left = new node(c1);
+            q1.push(f->left); 
+        }
+        cin>>c2;
+        if(c2!=-1)
+        {
+            f->right = new node(c2);
+            q1.push(f->right);
+        }
+    }
+}
 void vop(node*root,map<int,vector<int> > &m ,int d=0)
 {
     if(root==NULL)
@@ -48,13 +79,16 @@ void printTree(node*root)
 int main()
 {
     node* root = NULL;
-    buildTree(root);
-    printTree(root);
+    // buildTree(root);
+    int level;
+    cin>>level;
+    levelOrderInput(root);
+    // printTree(root);
     map<int, vector<int> > m;
     vop(root,m);
     for(auto it = m.begin();it!=m.end();it++)
     {
-        cout<<it->first<<" ->";
+        //cout<<it->first<<" ->";
         for(int i=0;i<it->second.size();i++)
         {
             cout<<it->second[i]<<" ";
