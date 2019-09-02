@@ -1,4 +1,5 @@
 //Beautiful Vertices - Editorial Soln
+//Double - Dfs - To get the master Node
 #include<bits/stdc++.h>
 using namespace std;
 vector<int> adj[200000];
@@ -19,7 +20,6 @@ void dfs(int x)
         {
             dfs(adj[x][i]);
         }
-
 
 
     }
@@ -140,6 +140,6 @@ int main()
 //
 //    cout<<happy<<endl;
 
-
+//
     return 0;
 }
