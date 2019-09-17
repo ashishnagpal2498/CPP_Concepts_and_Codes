@@ -13,6 +13,18 @@ public:
         adjList[u].push_back(v);
         adjList[v].push_back(u);
     }
+    void print()
+    {
+        for(auto i:adjList)
+        {
+            cout<<i.first<<"=>";
+            for(auto neigh:i.second)
+            {
+                cout<<neigh<<" ";
+            }
+            cout<<endl;
+        }
+    }
 void primeSeive(vector<int>&v)
 {
     int n = 9999;
@@ -55,6 +67,7 @@ int bfs(int start,int des)
             if(visited[neigh]==0)
             {
                 visited[neigh] = visited[tp]+1;
+                q1.push(neigh);
             }
             if(neigh==des) return visited[neigh]-1;
         }
@@ -69,14 +82,17 @@ bool compare(int n1,int n2)
     if(s1[1]!=s2[1]) count++;
     if(s1[2]!=s2[2]) count++;
     if(s1[3]!=s2[3]) count++;
-    return count>1;
+    return count<=1;
 }
 int shortestPath(int start,int end)
 {
     vector<int> primes;
     primeSeive(primes);
     //No need to make Adj of vector size-
-
+    // for(int i=0;i<primes.size();i++)
+    // {
+    //     cout<<primes[i]<<" ";
+    // }
     for(int i=0;i<primes.size();i++)
     {
         for(int j=i+1;j<primes.size();j++)
@@ -96,5 +112,6 @@ int main(int argc, char const *argv[])
     int n1 = 1033 , n2 = 8179;
     Graph g;
     cout<<g.shortestPath(n1,n2);
+    // g.print();
     return 0;
 }
