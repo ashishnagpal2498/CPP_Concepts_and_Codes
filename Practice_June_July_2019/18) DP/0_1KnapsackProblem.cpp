@@ -1,5 +1,6 @@
 //0-1 KnapSack Problem - 
-//
+//HackerEarth Questions _ circuits -
+
 #include<iostream>
 using namespace std;
 //Recursion - max( inclusive , profit - price[n] + f(n-1,w-wt) || exclusive - f(n-1,w))
