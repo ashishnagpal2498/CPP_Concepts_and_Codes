@@ -2,7 +2,7 @@
 #include<iostream>
 using namespace std;
 void median_sorted(int *arr1,int n,int *arr2,int m)
-{   
+{  
     if(n==1&&m==1) {
         // cout<<"Condition \n";
         cout<<(arr1[0] +arr2[0])/2<<endl;

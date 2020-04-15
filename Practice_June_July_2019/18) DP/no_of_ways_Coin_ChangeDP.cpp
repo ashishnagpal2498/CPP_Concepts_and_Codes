@@ -32,12 +32,28 @@ int noofWays_CoinChange(int amount,int coins[],int n)
     return ans;
 }
 //Bottom Up-
-
+int noOfWaysBottomUp(int amount,int coins[],int n)
+{
+    dp[0] =1;
+    for(int i=1;i<=amount;i++)
+    {   int ans=0;
+        //current amount - i
+        for(int j=0;j<n;j++)
+        {
+            if(i-coins[j]>=0)
+            {
+                dp[i]= dp[i]+dp[i-coins[j]];
+            }
+        }        
+    }
+    return dp[amount];
+}
 int main()
 {
     int coins[] ={1,7,10};
     int amount =15;
     int n = sizeof(coins)/sizeof(int);
     cout<<"No of ways - "<<noofWays_CoinChange(amount,coins,n);
+    cout<<endl<<"Coins DP  "<<noOfWaysBottomUp(amount,coins,n);
     return 0;
 }
