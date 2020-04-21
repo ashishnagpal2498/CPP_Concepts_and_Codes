@@ -36,5 +36,5 @@ int main()
     cout<<"Erase";
     //
     st.erase(1);
-
+    printSet(st);
 }
