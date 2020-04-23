@@ -1,19 +1,19 @@
 //Codeforce - D.Concatenated Multiples
 // x* 100 = (k - 45%k)%k;
-#include<iostream>
-#include<map>
-#include<list>
+#include<bits/stdc++.h>
 #define ll long long int
 using namespace std;
-ll arr[100005];
+ll arr[200005];
+ll n,k;
+map<ll , ll> val[10];
 int main()
-{
-    ll n,k;
+{   ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
     // First approach -  storing all the pairs of values - 
     // map<long long int, list<long long int> > val[10];
 
     // Second approach - storing the number as we need count only-
-    map<ll , ll> val[10];
     cin>>n>>k;
     for(ll i=0;i<n;i++) {
         cin>>arr[i];
@@ -71,11 +71,15 @@ int main()
 
         // Approach 2 -
         //there will be atleast 1 value or it is zero by default
-        count += val[zeros][findOut]; 
+        auto it = (val[zeros]).find(findOut);
+        if(it != val[zeros].end())
+        count += (*it).second; 
         //Subtract conditions in which - number is concat with itself
         ll po = 10;
         for(ll i=0;i<zeros;i++) po*=10;
-        if((arr[i]*po)%k == findOut) count--;    
+         po %=k;   
+        ll ab =  (arr[i]*po)%k;   
+        if( ab == findOut) count--;    
     }
     cout<<count<<endl;
     return 0;
