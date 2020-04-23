@@ -20,6 +20,6 @@ int main()
     cout<<endl<<m.size()<<endl;
     int n = m[0];
     cout<<n<<endl<<m.size()<<endl;
-    cout<< (m.find(1)== m.end())<<endl;
+    cout<<"Find value -- "<< (m.find(1) == m.end())<<endl;
     return 0;
 }
