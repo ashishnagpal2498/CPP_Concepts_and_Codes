@@ -9,7 +9,7 @@ map<ll , ll> val[10];
 int main()
 {   ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
+        ll count=0;
     // First approach -  storing all the pairs of values - 
     // map<long long int, list<long long int> > val[10];
 
@@ -39,8 +39,6 @@ int main()
     //     }
     //     cout<<endl;
     // }
-    
-    ll count=0;
     for(ll i=0;i<n;i++)
     {   ll zeros = -1;
         ll a = arr[i];
@@ -71,14 +69,14 @@ int main()
 
         // Approach 2 -
         //there will be atleast 1 value or it is zero by default
-        auto it = (val[zeros]).find(findOut);
-        if(it != val[zeros].end())
-        count += (*it).second; 
+        // auto it = (val[zeros]).find(findOut);
+        // if(it != val[zeros].end())
+        // count += (*it).second; 
+        count += val[zeros][findOut];
         //Subtract conditions in which - number is concat with itself
         ll po = 10;
         for(ll i=0;i<zeros;i++) po*=10;
-         po %=k;   
-        ll ab =  (arr[i]*po)%k;   
+        ll ab =  ((arr[i]%k)*(po%k))%k;   
         if( ab == findOut) count--;    
     }
     cout<<count<<endl;
