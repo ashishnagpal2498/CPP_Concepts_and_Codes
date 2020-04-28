@@ -5,7 +5,8 @@ int main()
 {   deque<int> d;
     int arr[100005];
     //
-    int n,t;
+    int n,t,k;
+    cin>>t;
     while(t--)
     {
         cin>>n>>k;
