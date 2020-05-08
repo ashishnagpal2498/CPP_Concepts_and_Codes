@@ -77,7 +77,7 @@ int main()
         ll po = 10;
         for(ll i=0;i<zeros;i++) po*=10;
         ll ab =  ((arr[i]%k)*(po%k))%k;   
-        if( ab == findOut) count--;    
+        if( ab == findOut) {cout<<"true";count--;}    
     }
     cout<<count<<endl;
     return 0;
