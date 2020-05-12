@@ -17,7 +17,7 @@ ll problemSet()
             m++;
             j>>=1;
         }
-        ll minVal = INT8_MAX, maxVal = INT8_MIN;
+        ll minVal = INT_MAX, maxVal = INT_MIN;
         ll sum=0;
         for(j=0;j<s.size();j++)
         {  
@@ -25,7 +25,7 @@ ll problemSet()
             if(minVal > s[j]) minVal = s[j];
             if(maxVal < s[j]) maxVal = s[j];
         }
-        if(sum>=l && sum<=r && ((maxVal-minVal)>=x)) count++;
+        if(s.size() >= 2 && sum>=l && sum<=r && ((maxVal-minVal)>=x)) count++;
     }
     return count;
 }
