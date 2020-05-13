@@ -17,7 +17,7 @@ int main()
         for(int j=1 ; j<=n;j++)
         {
             if((1<<i)&arr[j]) tot++;
-            if(tot%2) {
+            if(tot&1) {
               o++;
               ansOfBit+=e;
             }
@@ -26,6 +26,7 @@ int main()
             ansOfBit+=o;              
             }
         }
+
         ans+= (ansOfBit* (1<<i));
     }
     cout<<ans<<endl;    
