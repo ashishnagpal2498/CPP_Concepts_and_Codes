@@ -19,7 +19,7 @@ int main()
                 d.pop_back();
             d.push_back(i);
             if( i >= k) {
-                cout<<d.front()<<" ";
+                cout<<arr[d.front()]<<" ";
             }
         }
         cout<<endl;
