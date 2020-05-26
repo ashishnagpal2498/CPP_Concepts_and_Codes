@@ -23,12 +23,10 @@ bool findSubArray(ll* arr,ll* uniqueArr,ll uniqueCount)
     // for (int startPoint = 0; startPoint <n ; startPoint++) {
     //         //group sizes
     //         for (int grps = startPoint; grps <=n ; grps++) {
-    //             if(grps - startPoint == uniqueCount&&elementsExist(startPoint,grps))
+    //             if(grps - startPoint == uniqueCount&&elementsExist(arr,uniqueArr,startPoint,grps))
     //             {return true;
     //             }
 
-    //         }
-    //          cout<<endl;
     //         }
     //     }
     for(int i=0;i < (n-(uniqueCount));i++)
