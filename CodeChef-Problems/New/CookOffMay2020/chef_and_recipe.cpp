@@ -1,4 +1,6 @@
 // Chef and recipe 
+// WRONG ATTEMPT ---- 
+
 #include<bits/stdc++.h>
 #define ll long long int
 using namespace std;
@@ -64,4 +66,5 @@ int main()
         else cout<<"NO\n";
     }
     return 0;
-}    
+}
+//    

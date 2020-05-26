@@ -16,10 +16,12 @@ bool isChefsRecipe()
         {
             element[arr[i]]++;
         }
+        // Element has arrived before and previous element is same ---
         else if(arr[i-1] == arr[i])
         {
             element[arr[i]]++;
         }
+        // Element has arrived -
         else{
             return false;
         }
