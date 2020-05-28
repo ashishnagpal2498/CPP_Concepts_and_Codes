@@ -23,12 +23,14 @@ int willReach(ll L,ll P){
             count++;
             
         }
-        return count;
+
+        return P>=L ? count: -1;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     cin>>t;
     ll L,P;
     while(t--)

@@ -1,5 +1,6 @@
 // Maria breaks the self isolation Codeforce
 #include<bits/stdc++.h>
+#define mod 1e9+7
 #define ll long long int
 using namespace std;
 ll t,n;
