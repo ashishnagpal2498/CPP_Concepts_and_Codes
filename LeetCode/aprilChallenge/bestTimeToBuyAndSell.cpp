@@ -2,17 +2,17 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-bool isSorted(int i,vector<int> arr)
+bool isSorted(int i,vector<int> arr,int n)
 {
-    if(i==1) return true;
+    if(n==1) return true;
 
-    if(arr[i]<arr[i+1] && isSorted(i+1,arr)) return true;
+    if(isSorted(i+1,arr,n-1) && arr[i]<arr[i+1]) return true;
 
     else return false;
 }
 int maxProfit(vector<int> arr)
 {   int n = arr.size();
-    if(isSorted(0,arr)){
+    if(isSorted(0,arr,n)){
         return arr[n-1] - arr[0];
     }
     // O(n^2) check - variable 
@@ -22,6 +22,13 @@ int maxProfit(vector<int> arr)
         int j=i,k=i+1;
         long long int sum=0,costP=0,sellP=0;
         // Suppose i selled on day -
+        for(int j=i;j<n;j++)
+        {
+            for(int k=j;k<n;k++)
+            {
+                
+            }
+        }
         while(j<n && k<n)
         {
             if(arr[j]<arr[k] && k+1<n && arr[k]>arr[k+1])

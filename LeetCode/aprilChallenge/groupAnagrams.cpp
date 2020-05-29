@@ -7,39 +7,35 @@
 using namespace std;
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
     vector<string> copy = strs;
-    vector<string> s;
-    vector<vector<string> > ans(strs.size(),s);
+    map<string,int> indexs;
+    int m=0;
     for(int i=0;i<copy.size();i++)
-    {
+    {   
         sort(copy[i].begin(),copy[i].end());
+         auto indexVal = indexs.find(copy[i]);
+         if(indexVal == indexs.end())
+         {
+            indexs[copy[i]] = m;
+            m++;
+         }
     }
+    vector<vector<string> > ans(m);
+    cout<<"Ans size -- "<<ans.size()<<endl;
     for(int i=0;i<copy.size();i++)
     {
         cout<<copy[i]<<"  --  ";
     }
-    map<string,int> indexs;
-    int m=0;
-    cout<<strs.size()<<endl;
+
     for(int i=0;i<strs.size();i++)
-    {   auto indexVal = indexs.find(copy[i]);
-        if(indexVal == indexs.end())
-        {
+    {       int indexVal = indexs[copy[i]];
             // element has come onces -
-            indexs[copy[i]] = m;
-            m++;
-            ans[m].push_back(strs[i]);
-            cout<<"Here IF "<<ans[m][0]<<endl;
-        }
-        else{
-            ans[(*indexVal).second].push_back(strs[i]);
-            cout<<"IndexVal "<<indexVal->first<<" Index : "<<indexVal->second
-            <<"Value : "<<ans[indexVal->second][ans[indexVal->second].size()-1]<<endl;
-        }
+        cout<<"index val "<<indexVal<<endl;
+            ans[indexVal].push_back(strs[i]);
     }
     cout<<"ANS -:"<<endl;
-     for(int i=0;i<ans.size();i++)
+     for(int i=0;i<m;i++)
     {   cout<<ans[i].size()<<"  ";
-        for(int j=0;j<ans[i].size();i++)
+        for(int j=0;j<ans[i].size();j++)
         {   
             cout<<ans[i][j]<<" ";
         }
