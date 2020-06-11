@@ -31,6 +31,21 @@ int query(int *tree,int index,int start,int end,int l,int r)
     int rightAns = query(tree,2*index+1,mid+1,end,l,r);
     return min(rightAns,leftAns);
 }
+void update(int* tree,int index,int updateIndex,int val,int start,int end)
+{
+    if(updateIndex < start || updateIndex > end) return;
+
+    if(start == updateIndex && end == updateIndex)
+    {
+        tree[index] = val;
+        return;
+    }
+    int mid = (start+end)/2;
+    update(tree,2*index,updateIndex,val,start,mid);
+    update(tree,2*index+1,updateIndex,val,mid+1,end);
+    tree[index] = min(tree[2*index],tree[2*index+1]);
+
+}
 int main()
 {
     int arr[] = {1,3,2,-2,4,5};
