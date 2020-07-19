@@ -9,22 +9,20 @@ using namespace std;
 ll t,n;
 ll arr[200005];
 bool solution(){
-     map<ll,bool> visited;
-    for(int mask=0;mask<(1<<n);mask++){
-        ll sumOr = 0;
-        int j=0;
-        while(j<n){
-            if((1<<j)&mask){
-                sumOr = sumOr|arr[j];
-            }
-            j++;
-        }
-        // cout<<sumOr<<endl;
-        if(!visited[sumOr]){
-            visited[sumOr] = true;
+    ll* freq = new ll[n+1];
+    map<ll,bool> visited;
+    freq[0] = 0;
+    for(ll i=0;i<n;i++){
+        freq[i+1] = freq[i] | arr[i];
+        visited[arr[i]] = true;
+    }
+
+    for(int i=0;i<=n;i++){
+        if((visited[freq[i]]&& i>1)){
+            return false;
         }
         else{
-            return false;
+            visited[freq[i]] = true;
         }
     }
     return true;
