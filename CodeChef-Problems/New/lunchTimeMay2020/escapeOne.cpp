@@ -26,7 +26,7 @@ int main()
         else if(val.size()==2) cout<<val[1]-val[0]<<endl;
         else{
             for(int i=0;i<val.size()-1;i+=2)
-            {
+            {   if(val[i+1] - val[i] > val[])
                 ans+=(val[i+1]-val[i]);
             }
             if(val.size()&1)

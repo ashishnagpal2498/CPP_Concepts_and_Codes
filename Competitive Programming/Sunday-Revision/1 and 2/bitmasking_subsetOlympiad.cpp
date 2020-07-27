@@ -9,7 +9,7 @@ ll olympiadSets(){
     for(int mask = 0; mask<(1<<n); mask++)
     {   ll sum =0,minVal = INT_MAX,maxVal = INT_MIN;
         if(__builtin_popcount(mask) > 1)
-        { 
+        {   cout<<"mask --> "<<mask<<" ";
             for(int j=0;j<n;j++)
             {
                 if(mask&(1<<j))
