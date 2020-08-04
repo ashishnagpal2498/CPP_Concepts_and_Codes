@@ -18,9 +18,15 @@ int main()
         cin>>n;
         // least number can make
         ll num1 = 6+10+14;
-        if(n>=num1){
+        if(n>num1){
             cout<<"YES\n";
-            cout<<6<<" "<<10<<" "<<14<<" "<<(n-num1)<<endl;
+            ll subtractVal = n-num1;
+            if(subtractVal == 6 || subtractVal == 10 || subtractVal == 14){
+                cout<<6<<" "<<10<<" "<<15<<" "<<subtractVal-1<<endl;
+            }
+            else{
+            cout<<6<<" "<<10<<" "<<14<<" "<<subtractVal<<endl;                
+            }
         }
         else{
             cout<<"NO"<<endl;

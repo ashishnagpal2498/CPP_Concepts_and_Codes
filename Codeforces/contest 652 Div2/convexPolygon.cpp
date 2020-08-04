@@ -7,6 +7,7 @@
 #define mod 1e9+7
 using namespace std;
 ll t,n;
+// Wrong -> %4 
 int main()
 {
     ios_base::sync_with_stdio(false);
