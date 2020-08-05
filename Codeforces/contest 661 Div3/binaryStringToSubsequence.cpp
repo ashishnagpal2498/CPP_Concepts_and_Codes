@@ -10,32 +10,32 @@ ll t,n;
 // ll arr[200005];
 void solve(string s){
     ll ans = 0,stringNo=1;
+    vector<string> str;
     map<ll,ll> positions;
-    for(int i=0;i<n;i++){
-        if(positions.find(i) == positions.end()){
-            int j=i+1;
-            // for 1 its true
-            bool flag = s[i] == '1';
-            string small = "";
-            small+=s[i];
-            positions[i] = stringNo;
-            while(j<n){
-                if(flag && s[j] == '0' && positions.find(j) == positions.end()){
-                    // put 0 in the subsequence
-                    positions[j] = stringNo;
-                    flag = !flag;
-                }
-                else if(!flag && s[j] == '1' && positions.find(j) == positions.end()){
-                    positions[j] = stringNo;
-                    flag = !flag;
-                }
-                j++;
+    string p = "";
+    p+=s[0];
+    positions[0] = 1;
+    str.push_back(p);
+    for(int i=1;i<n;i++){
+        bool flag = false;
+        for(int j=0;j<str.size(); j++){
+            // it is a string
+            if(str[j][str[j].size()-1] != s[i])
+            {
+                positions[i] = j+1;
+                str[j]+=s[i];
+                flag = true;
+                break;
             }
-            ans++;
-            stringNo++;
+        }
+        if(!flag){
+            string m = "";
+            m+=s[i];
+            positions[i] = str.size()+1;
+            str.push_back(m);
         }
     }
-    cout<<ans<<endl;
+    cout<<str.size()<<endl;
     for(int i=0;i<n;i++){
         cout<<positions[i]<<" ";
     }
