@@ -15,7 +15,7 @@ int main()
     while(n--){
         map<char,int> freqInStr,freqRequired;
         string str1,str2;
-        cin.get();
+        // cin.get();
         cin>>str1>>str2;
         sort(str1.begin(),str1.end());
         string ans ="";
@@ -46,7 +46,7 @@ int main()
             if(f >0){
 
                 for(int l=0;l<f;l++){
-                    ans+=('a'+i);
+                    ans+=('a'+ i);
                 }
             }
         }
