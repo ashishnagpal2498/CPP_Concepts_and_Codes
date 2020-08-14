@@ -33,16 +33,15 @@ public:
             curr->isEndOfWord = 1;
         }
     }
-    string query2(Trie* c = nullptr){
+    vector<string> query2(Trie* c = nullptr){
         Trie* curr =  c == nullptr ? this : c;
         int i=0;
-        string ans="";
+        vector<string> ans;
         while(i<26){
+            string m="";
             if(curr->arr[i] != nullptr){
-                string s = query2(curr->arr[i]);
-                // if(s != "") return s;
-                ans+=('a'+i);
-                ans+=s;
+                m+=('a'+i);
+                // -> -> 
                 // cout<<m<<endl;
                 if(curr->isEndOfWord){
                     bool f = false;
@@ -53,9 +52,13 @@ public:
                         }
                     }
                     if(f) {i++;continue;}
+                    ans.push_back(m);
                     return ans;
                 }
-                // return m;
+                vector<string> s = query2(curr->arr[i]);
+                for(auto q:s){
+                    ans.push_back(m+q);
+                }
             }
             i++;
         }
@@ -86,7 +89,8 @@ int main()
         cin>>q;
         ll v;
         ArrIn(q){
-            string p;
+            vector<string> p;
+            string a;
             cin>>v;
             int index;
             char c;
@@ -95,7 +99,11 @@ int main()
                             g.insert(indexString[index],c);
                             break;
                 case 2:     p = g.query2();
-                            cout<<p<<endl;
+                            a = p[0];
+                            for(int i=1;i<p.size();i++) {
+                                if(a>p[i]) a = p[i];
+                            }
+                            cout<<a<<endl;
                             break;
                 case 3:     cout<<"Query out of reach \n";
                             break;
