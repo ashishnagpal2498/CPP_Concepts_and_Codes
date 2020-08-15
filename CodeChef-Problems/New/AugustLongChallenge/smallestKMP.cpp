@@ -48,7 +48,29 @@ int main()
         // makeStrings ->
         string dummy(freqInStr[str1[i]]-freqRequired[str1[i]],str1[i]);
         // cout<<dummy<<endl;
-        if(dummy>str2){
+        int decider = -1,j=0;
+        
+         // CUSTOM COMPARE OF STRINGS LEXICOGRAPHICALLY , 
+         // AS > OPERATOR measures till length ->  
+        while(dummy[j] != '\0' && str2[j] != '\0'){
+            if(dummy[j] == str2[j]) j++;
+            else if(dummy[j]> str2[j]) {decider=2; break;}
+            else {decider = 1; break;}
+        }
+        if(decider == -1 && j == dummy.size()){
+            // any one of string is emptied before ->
+            // cout<<"Here becoz decide -1"<<endl;
+            if(j-1>=0 && dummy[j-1] > str2[j]) decider=2;
+            else decider=1;
+           
+        }
+        else if( decider == -1 && j == m){
+            // No need for this part -> as dummy has same values and even if str[i] finish first->
+             if( j-1 >= 0 && str2[j-1] > dummy[j]) decider = 1;
+            else decider = 2;
+        }
+        // cout<<decider<<endl;
+        if(decider == 2){
             ans+=str2;
             for(int j=0;j<m;j++){
                    freqInStr[str2[j]]--; 

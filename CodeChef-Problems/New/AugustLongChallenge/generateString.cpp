@@ -17,6 +17,12 @@ int main()
     for(int i=0;i<n;i++){
         s+=('a'+ (i%26));    
     }
-    cout<<s<<endl;
+    string str1= "zsoo",str2="zz",str3="mmmmm",str4="mmmmma";
+    if(str1 > str2)
+    {cout<<str2<<endl;
+    }
+    else {cout<<str1<<endl;}
+    if(str3 > str4) cout<<str4;
+    else cout<<str3;
     return 0;
 }    
