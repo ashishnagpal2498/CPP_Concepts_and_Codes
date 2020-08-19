@@ -8,17 +8,17 @@
 using namespace std;
 ll t,n,q;
 ll arr[200005];
-void recursiveTree(int index,vector<int> &vect,int* tree,int n,int i,ll &v){
+void recursiveTree(int index,int* tree,int n,int i,ll &v,map<ll,ll> treeIndexToArr){
     if(index >= (4*n+1)) return;
 
     if(i>0 && i%2 == 0){
         // cout<<"Index -> "<<index<<" -> val "<<tree[index]<<endl;
         v+= tree[index];
         tree[index] = 0;
-        vect.push_back(index);
+         arr[treeIndexToArr[index]] = 0; 
     }
-    if(tree[2*index] != -1 ) recursiveTree(2*index,vect,tree,n,i+1,v);
-    if(tree[2*index+1] != -1 ) recursiveTree(2*index+1,vect,tree,n,i+1,v);
+    if(tree[2*index] != -1 ) recursiveTree(2*index,tree,n,i+1,v,treeIndexToArr);
+    if(tree[2*index+1] != -1 ) recursiveTree(2*index+1,tree,n,i+1,v,treeIndexToArr);
     return;
 }
 int main()
@@ -84,12 +84,8 @@ int main()
             index = arrayToTreeIndex[v];
             //cout<<index<<" index ----"<<endl;
         // Root of tree found ->
-            vector<int> vect;
             ll val = tree[index];
-            recursiveTree(index,vect,tree,n,0,val);
-            for(auto value: vect){
-                arr[treeIndexToArr[value]] =0; 
-            }
+            recursiveTree(index,tree,n,0,val,treeIndexToArr);
            // OUTPUT VALUES 
 
            // cout<<"Q -> "<<q<<" -> val "<<val<<" Tree index "<<index<<" Array Index -> "<<arr[treeIndexToArr[index]]<<endl;
