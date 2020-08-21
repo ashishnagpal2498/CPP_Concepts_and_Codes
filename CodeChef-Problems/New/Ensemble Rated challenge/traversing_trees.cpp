@@ -17,8 +17,8 @@ void recursiveTree(int index,int* tree,int n,int i,ll &v,map<ll,ll> treeIndexToA
         tree[index] = 0;
          arr[treeIndexToArr[index]] = 0; 
     }
-    if(tree[2*index] != -1 ) recursiveTree(2*index,tree,n,i+1,v,treeIndexToArr);
-    if(tree[2*index+1] != -1 ) recursiveTree(2*index+1,tree,n,i+1,v,treeIndexToArr);
+    if(tree[4*index] != -1 ) recursiveTree(4*index,tree,n,i+2,v,treeIndexToArr);
+    if(tree[4*index+1] != -1 ) recursiveTree(4*index+1,tree,n,i+2,v,treeIndexToArr);
     return;
 }
 int main()
