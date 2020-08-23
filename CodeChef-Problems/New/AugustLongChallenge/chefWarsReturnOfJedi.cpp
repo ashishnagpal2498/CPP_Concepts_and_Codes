@@ -1,4 +1,4 @@
-// Missing a point
+// Chef Wars - Return of Jedi
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -6,22 +6,26 @@
 #define ArrOut for(int i=0;i<n;i++) {cout<<arr[i]<<" "; }
 #define mod 1e9+7
 using namespace std;
-ll t,n;
-ll arr[200005];
-map<ll,pair<ll,ll> > Xsame,Ysame;
+ll t,h,p;
+// ll arr[200005];
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cin>>t;
-    while(t--)
-    {
-        cin>>n;
-        ll a,b;
-        for(int i=0;i<(4*n - 1);i++){
-            cin>>a>>b;
-            if(Xsame.find(a) != )
+    while(t--){
+        cin>>h>>p;
+        while(h>0 && p>0){
+            h-=p;
+            p>>=1;
+            // cout<<p<<h<<endl;
         }
-    }
+        if(h<=0){
+            cout<<1<<endl;
+        }
+        else {
+            cout<<0<<endl;
+        }
+    }    
     return 0;
 }    

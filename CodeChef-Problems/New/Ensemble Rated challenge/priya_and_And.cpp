@@ -1,4 +1,4 @@
-// multiply by 2 divide by 6
+// Priya and And
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -14,22 +14,21 @@ int main()
     cin.tie(NULL);
     cin>>t;
     while(t--){
+        // int freq[101] = {0};
         cin>>n;
-        ll ans =0;
-        bool flag = true;
-        while(n != 1){
-            ans++;
-            if(n%3 !=0){
-                cout<<-1<<endl;
-                flag = false;
-                break;
-            }
-            if(n%6 ==0) n/=6;
-            else n*=2;
+        ArrIn(n) {cin>>arr[i];
+            // freq[arr[i]]++;
         }
-        if(flag) {
-            cout<<ans<<endl;
+        // sort(arr,arr+n);
+        ll ans = 0;
+        ArrIn(n){
+            for(int j=i+1;j<n;j++){
+                ll andVal = arr[i] & arr[j];
+                if(andVal == arr[i]) ans++;
+            }    
         }
-    }    
+        cout<<ans<<endl;
+        
+    }
     return 0;
 }    

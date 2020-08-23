@@ -1,4 +1,4 @@
-// multiply by 2 divide by 6
+// Spoj -> MMMGame
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -15,21 +15,19 @@ int main()
     cin>>t;
     while(t--){
         cin>>n;
-        ll ans =0;
-        bool flag = true;
-        while(n != 1){
-            ans++;
-            if(n%3 !=0){
-                cout<<-1<<endl;
-                flag = false;
-                break;
-            }
-            if(n%6 ==0) n/=6;
-            else n*=2;
+        ll zorVal = 0;
+        int eachPile1 = 0;
+        ArrIn(n){
+            cin>>arr[i];
+            if(arr[i] == 1) eachPile1++;
+            zorVal = zorVal ^ arr[i];
         }
-        if(flag) {
-            cout<<ans<<endl;
+        if((zorVal == 0 && eachPile1 !=n) || (eachPile1==n && n&1)){
+            cout<<"Brother"<<endl;
+        }    
+        else{
+            cout<<"John"<<endl;
         }
-    }    
+    }
     return 0;
 }    

@@ -1,4 +1,3 @@
-// Missing a point
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -6,22 +5,25 @@
 #define ArrOut for(int i=0;i<n;i++) {cout<<arr[i]<<" "; }
 #define mod 1e9+7
 using namespace std;
-ll t,n;
+ll t,n,k;
 ll arr[200005];
-map<ll,pair<ll,ll> > Xsame,Ysame;
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cin>>t;
-    while(t--)
-    {
-        cin>>n;
-        ll a,b;
-        for(int i=0;i<(4*n - 1);i++){
-            cin>>a>>b;
-            if(Xsame.find(a) != )
+    while(t--){
+        cin>>n>>k;
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
         }
-    }
+        for(int i=0;i<n;i++){
+            if(arr[i]%k == 0){
+                cout<<1;
+            }
+            else cout<<0;
+        }
+        cout<<endl;
+    }    
     return 0;
 }    

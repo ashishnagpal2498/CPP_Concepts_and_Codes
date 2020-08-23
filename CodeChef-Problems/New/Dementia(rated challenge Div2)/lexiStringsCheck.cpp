@@ -1,4 +1,4 @@
-// Missing a point
+// trialCpp
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -8,20 +8,13 @@
 using namespace std;
 ll t,n;
 ll arr[200005];
-map<ll,pair<ll,ll> > Xsame,Ysame;
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cin>>t;
-    while(t--)
-    {
-        cin>>n;
-        ll a,b;
-        for(int i=0;i<(4*n - 1);i++){
-            cin>>a>>b;
-            if(Xsame.find(a) != )
-        }
-    }
+    string s1="abcdef",s2="abq";
+    if(s1>s2) cout<<s1;
+    else cout<<s2;
+        
     return 0;
 }    
