@@ -21,8 +21,8 @@ int main()
         ArrIn(n){
             freq[s[i]]++;
         }
-        if((freq['0'] != 0 && freq['0']<(k)) || (freq['1'] !=0 && freq['1']<(k))){
-            cout<<"Here"<<endl;
+        if((freq['0'] != 0 && freq['0']<(2*k)) || (freq['1'] !=0 && freq['1']<(2*k))){
+            // cout<<"Here"<<endl;
             cout<<"IMPOSSIBLE"<<endl;
         }
         else{
@@ -46,14 +46,15 @@ int main()
                string ans(n,'1');
                cout<<ans<<endl;
             }
-            else if(freq['1']> freq['0'] && freq['1']%freq['0']==0){
+            else if(freq['1']> freq['0'] && freq['1']%freq['0'] == 0){
                 string ans ="";
                 int m=0;
+                int ratio = freq['1']/freq['0'];
                 for(int i=0;i<n;i++,m++){
-                    if(m == k/2){
+                    if(m == ratio-1){
                         ans+='0'; i++;
+                        m = 0;
                     }
-                    else if(m==k-1) m=0;
                     ans+='1';
                 }
                 cout<<ans<<endl;
@@ -61,11 +62,14 @@ int main()
             else if(freq['0']>freq['1'] && freq['0']%freq['1'] == 0){
                 string ans ="";
                 int m=0;
+                int ratio = freq['0']/freq['1'];
+
                 for(int i=0;i<n;i++,m++){
-                    if(m == k/2){
+                    if(m == ratio-1){
                         ans+='1'; i++;
+                        m=0;
                     }
-                    else if(m==k-1) m=0;
+                    // else if(m==k-1) m=0;
                     ans+='0';
                 }
                 cout<<ans<<endl;
