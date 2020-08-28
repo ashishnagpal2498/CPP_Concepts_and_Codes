@@ -1,4 +1,4 @@
-// String similarity
+// Sorted array squares ->
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -12,18 +12,15 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cin>>t;
-    while(t--){
-        cin>>n;
-        string s;
-        cin>>s;
-        string ans="";
-            int m=0;
-            for(int i=n-1;i<2*n-1;i++,m++){
-                // cout<<"loop call -> here\n";
-                ans+=s[i+m+1-n];
-    }
-        cout<<ans<<endl;    
+    cin>>n;
+    ArrIn(n) cin>>arr[i];
+    int * ans = new int[n];
+    for(int i=0;i<n;i++){
+        ans[i] = arr[i]*arr[i];
+    }    
+    sort(ans,ans+n);
+    ArrIn(n){
+        cout<<ans[i]<<" ";
     }
     return 0;
 }    

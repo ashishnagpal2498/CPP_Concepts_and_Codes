@@ -1,4 +1,4 @@
-// String similarity
+// Even digits
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -12,18 +12,13 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cin>>t;
-    while(t--){
-        cin>>n;
-        string s;
-        cin>>s;
-        string ans="";
-            int m=0;
-            for(int i=n-1;i<2*n-1;i++,m++){
-                // cout<<"loop call -> here\n";
-                ans+=s[i+m+1-n];
-    }
-        cout<<ans<<endl;    
-    }
+    cin>>n;
+    int cnt =0;
+    ArrIn(n){
+        cin>>arr[i];
+        string s = to_string(arr[i]);
+        if(s.length()%2==0) cnt++;
+    }  
+    cout<<cnt<<endl;
     return 0;
 }    

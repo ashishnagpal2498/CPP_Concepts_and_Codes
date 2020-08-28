@@ -1,4 +1,4 @@
-// String similarity
+// LeetCode Arrays
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -12,18 +12,18 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cin>>t;
-    while(t--){
-        cin>>n;
-        string s;
-        cin>>s;
-        string ans="";
-            int m=0;
-            for(int i=n-1;i<2*n-1;i++,m++){
-                // cout<<"loop call -> here\n";
-                ans+=s[i+m+1-n];
-    }
-        cout<<ans<<endl;    
-    }
+    cin>>n;
+    ArrIn(n) cin>>n;
+    int max1 = 0;
+    int maxSoFar=0;
+    ArrIn(n){
+        if(arr[i]== 1) maxSoFar++;
+        else{
+            max1 = max(max1,maxSoFar);
+            maxSoFar = 0;
+        } 
+    }    
+    if(maxSoFar != 0) max1 = max(max1,maxSoFar);
+    cout<<max1<<endl;
     return 0;
 }    
