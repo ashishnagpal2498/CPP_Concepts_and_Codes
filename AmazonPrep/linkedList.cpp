@@ -12,7 +12,7 @@ public:
     Node* next;
     Node(int d){
         data = d;
-        next = nullptr;
+        next = NULL;
     }
 };
 void insertAtHead(Node* &head,int d){
@@ -39,14 +39,14 @@ void insertAtTail(Node*&head,int d){
 Node* createList(ll* arr, ll n){
     Node* head= NULL;
     for(int i=0;i<n;i++){
-        insertAtHead(head,arr[i]);
+        insertAtTail(head,arr[i]);
     }
     return head;
 }
 void printLL(Node* head){
 
     while(head){
-        cout<<head->data<<" -> ";
+        cout<<head->data<<" ";
         head = head->next;
     }
     cout<<"\n";
@@ -110,26 +110,131 @@ ostream& operator<<(ostream &ob, Node*&head){
     printLL(head);
     return ob;
 }
+// istream& operator>>(istream & in,Node* &head){
+//     return in;
+// }
+void oddEven(Node* &head,int n){
+    Node* temp = head;
+    Node* prev = NULL;
+    int i=0;
+    while(temp && i<n){
+        i++;
+        if(temp->data&1){
+            if(temp == head){
+                cout<<"Odd head \n";
+              prev = temp;
+              temp = temp->next;  
+            } 
+            else{
+                cout<<"Odd val"<<endl;
+                Node* nxt = temp->next;
+                prev->next = nxt;
+                insertAtHead(head,temp->data);
+                delete temp;
+                temp = nxt; 
+            }
+        }
+        else{
+            if(temp == head){
+                // prev will be null only;
+                cout<<"Even head"<<endl;
+                Node* nxt = temp->next;
+                head = nxt;
+                insertAtTail(head,temp->data);
+                // ->
+                
+                delete temp;
+                temp = nxt;
+            }
+            else{
+                cout<<"Even Val"<<endl;
+                Node* nxt = temp->next;
+                prev->next = nxt;
+                insertAtTail(head,temp->data);
+                delete temp;
+                temp = nxt;
+            }
+        }
+    }
+}
+void oddEven2(Node* &head){
+    if(head == NULL) return;
+    Node* temp = head;
+    // If value is odd -> skip till we find an even value
+    if(temp->data&1){
+        // cout<<"Here"<<endl;
+        while(temp && temp->next && (temp->next->data&1)) temp= temp->next;
+    }
+    // If value is even -> skip till we find odd value
+    else
+    while(temp && temp->next && !(temp->next->data&1))    temp = temp->next;
+    
+    Node* nxt,*prev;
+    
+    if(temp && temp->next == NULL) {
+    // cout<<"Return ->"<<endl;
+    return; // all numbers are even or odd ->
+
+}
+    else if(!(head->data&1))
+    {   nxt = temp->next;
+        temp->next = nxt->next;
+        nxt->next = head;
+    // New head will now be odd value ->
+        head = nxt;
+    }
+    Node* oddHead = head;
+    // Previous value ->
+    // Temp will stop on even value -> 
+    // Even head -> temp 
+
+    prev = temp;
+    temp= temp->next;
+    while(temp){
+        if(temp->data&1){
+            prev->next = temp->next;
+            nxt = oddHead->next;
+            // 1 1 
+            oddHead->next = temp;
+            temp->next = nxt;
+            temp = prev->next;
+        }
+        else{
+            prev = temp;
+            temp = temp->next;
+        }
+    }
+}
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(NULL);
     ll n, arr[100005];
-    cin>>n;
-    ArrIn(n) cin>>arr[i];  
-    Node* head = createList(arr,n);
-    printLL(head);
+    // cin>>n;
+    // ArrIn(n) cin>>arr[i];  
+    // Node* head = createList(arr,n);
+    // printLL(head);
+    // cin>>n;
+    // ArrIn(n) cin>>arr[i];
+    // Node* head2 = createList(arr,n);
+    // printLL(head2);
+    // Node* m = merge(head,head2);
+    // printLL(m);
+    // m = mergeSort(m);
+    // cout<<endl;
+    // printLL(m);
+    // int k = 4;
+    // Node* reverse = kReverse(m,k);
+    // cout<<reverse;
     cin>>n;
     ArrIn(n) cin>>arr[i];
-    Node* head2 = createList(arr,n);
-    printLL(head2);
-    Node* m = merge(head,head2);
-    printLL(m);
-    m = mergeSort(m);
-    cout<<endl;
-    printLL(m);
-    int k = 4;
-    Node* reverse = kReverse(m,k);
-    cout<<reverse;
+    Node* head = createList(arr,n);
+    // cout<<head<<endl;
+    // oddEven(head,n);
+    // cout<<head<<endl;
+    // 1 2 5 6 8 3 -> 3,5,1,2,6,8
+    oddEven2(head);
+    cout<<head;
+    // 1->3->5->2->6->8
     return 0;
 }    
