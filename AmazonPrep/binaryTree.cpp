@@ -110,6 +110,62 @@ int maxSum(Node* root){
     maxPathSum(root,res);
     return res;
 }
+class myPair2 {
+public: 
+    int maxVal;
+    int singleNodeSum;
+    myPair2(){
+        maxVal = INT_MIN;
+        singleNodeSum = 0;
+    }
+};
+myPair2 maxPathSum2(Node* root){
+    myPair2 p;
+    if(root==NULL) return p;
+
+    myPair2 leftTree = maxPathSum2(root->left);
+    myPair2 rightTree = maxPathSum2(root->right);
+
+    p.maxVal = max({leftTree.maxVal,rightTree.maxVal,leftTree.singleNodeSum+rightTree.singleNodeSum+root->data});
+    p.singleNodeSum = max(root->data,max(leftTree.singleNodeSum,rightTree.singleNodeSum)+root->data);
+
+    return p;
+}
+void maxXorpath(Node*root,vector<int> values,int &xorVal){
+    if(root== NULL) return;
+    values.push_back(root->data);
+    if(root->left == NULL && root->right == NULL){
+        int v = 0;
+        for(int i:values){
+            v^=i;
+        }
+        // v^=root->data;
+        xorVal = max(xorVal,v);
+    }
+
+    maxXorpath(root->left,values,xorVal);
+    maxXorpath(root->right,values,xorVal);
+    // values.pop_back();
+    return;
+}
+// Max Path between two leaves
+class myPair3{
+public:
+    int maxV;
+    int nodeSum;
+    myPair3(){
+        nodeSum = 0;
+        maxV = INT_MIN;
+    }
+};
+myPair3 maxLeaveSum(Node* root){
+    myPair3 p;
+    if(root == NULL) return p;
+
+    myPair3 leftTree = maxLeaveSum(root->left);
+    myPair3 rightTree = maxLeaveSum(root->right);
+    
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -120,6 +176,12 @@ int main()
     cout<<"Diameter -> "<<diameter(root)<<endl;    
     myPair ans = diameter2(root);
     cout<<"Diameter 2 -> "<<ans.diameter<<endl;
-    cout<<maxSum(root);
+    cout<<"Max value -> path 1 -> "<<maxSum(root)<<endl;
+    myPair2 ans2 = maxPathSum2(root);
+    cout<<"Max value path 2 ->"<<ans2.maxVal<<endl;
+    int ans3 = INT_MIN;
+    vector<int> values;
+    maxXorpath(root,values,ans3);
+    cout<<"Max Xor value is -> "<<ans3<<endl;
     return 0;
 }    
