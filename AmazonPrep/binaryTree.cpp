@@ -1,4 +1,4 @@
-// Binary Tree ->
+// Binary Tree -> Implementation ->
 #include<bits/stdc++.h>
 #define ll long long int
 #define endl "\n"
@@ -106,7 +106,6 @@ int maxPathSum(Node* root,int &res){
 int maxSum(Node* root){
     if(root ==NULL) return 0;
     int res = 0;
-
     maxPathSum(root,res);
     return res;
 }
@@ -133,6 +132,7 @@ myPair2 maxPathSum2(Node* root){
 }
 void maxXorpath(Node*root,vector<int> values,int &xorVal){
     if(root== NULL) return;
+    // If passed by value -> no need to remove ->
     values.push_back(root->data);
     if(root->left == NULL && root->right == NULL){
         int v = 0;
@@ -153,8 +153,12 @@ class myPair3{
 public:
     int maxV;
     int nodeSum;
+    int leftLeave;
+    int rightLeave;
     myPair3(){
         nodeSum = 0;
+        leftLeave = 0;
+        rightLeave = 0;
         maxV = INT_MIN;
     }
 };
@@ -164,7 +168,13 @@ myPair3 maxLeaveSum(Node* root){
 
     myPair3 leftTree = maxLeaveSum(root->left);
     myPair3 rightTree = maxLeaveSum(root->right);
-    
+
+    p.leftLeave = max(leftTree.leftLeave,rightTree.leftLeave);
+    p.rightLeave = max(rightTree.rightLeave,leftTree.rightLeave);
+
+    p.maxV = max({leftTree.maxV,rightTree.maxV,p.leftLeave+p.rightLeave+root->data});
+
+    return p;
 }
 int main()
 {
@@ -183,5 +193,8 @@ int main()
     vector<int> values;
     maxXorpath(root,values,ans3);
     cout<<"Max Xor value is -> "<<ans3<<endl;
+
+    myPair3 ans4 = maxLeaveSum(root);
+    cout<<"Max Leave Sum is -> "<<ans4.maxV<<endl;
     return 0;
 }    
