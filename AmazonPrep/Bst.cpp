@@ -224,34 +224,43 @@ LL treeToLinkedLL(Node* root){
         return p;
     }
 }
+// If Only single Traversal given -> 
+// Sort the elements will give inOrder traversal ----->
 Node* createTreePreOrderInOrder(ll* inorder,ll*preOrder,ll inS,ll inE,ll &i){
     if(inS > inE) return NULL;
     if(i == n) return NULL;
     ll val = preOrder[i++];
     ll s=inS,e = inE;
     ll index = -1;
-    while(s<=e){
-        ll mid = (s+e)/2;
-        if(inorder[mid] == val){
-            index = mid;
+    // while(s<=e){
+    //     ll mid = (s+e)/2;
+    //     if(inorder[mid] == val){
+    //         index = mid;
+    //         break;
+    //     }
+    //     else if(inorder[mid]>val){
+    //         e = mid-1;
+    //     }
+    //     else{
+    //         s = mid+1;
+    //     }
+    // }
+    for(int j=inS;j<=inE;j++){
+        if(val == inorder[j]){
+            index = j;
             break;
-        }
-        else if(inorder[mid]>val){
-            e = mid-1;
-        }
-        else{
-            s = mid+1;
         }
     }
     Node* root = new Node(val);
-    cout<<"val -> "<<val<<" -> "<<inorder[index]<<endl;
+    cout<<"val -> "<<val<<" i-> "<<i<<" inorder-> "<<inorder[index]<<endl;
     root->left = createTreePreOrderInOrder(inorder,preOrder,inS,index-1,i);
     root->right = createTreePreOrderInOrder(inorder,preOrder,index+1,inE,i);
     return root;
 }
+// Complexity of searching Improved by Map -> Use unOrdered Map
 Node* createTreePostOrderInOrder(ll *inorder,ll* postorder,ll inS,ll inE,ll postS,ll postE){
     // EIther construct right tree first then left tree or divide ->post order Array Accordingly ->
-    if(inS > inE) return NULL;
+    if(inS > inE || postS>postE) return NULL;
 
     if(inS == inE){
         return new Node(inorder[inS]);
@@ -264,12 +273,12 @@ Node* createTreePostOrderInOrder(ll *inorder,ll* postorder,ll inS,ll inE,ll post
             break;
         }
     }
-    ll leftTreeSize = inS - index;
+    ll leftTreeSize = index - inS;
     ll rightTreeSize = inE - index;
 
     Node* root = new Node(val);
     root->left = createTreePostOrderInOrder(inorder,postorder,inS,index-1,postS,postS+leftTreeSize-1);
-    root->right = createTreePostOrderInOrder(inorder,postorder,index+1,inE,postE-rightTreeSize-1,postE);
+    root->right = createTreePostOrderInOrder(inorder,postorder,index+1,inE,postE-rightTreeSize,postE-1);
     return root;
 }
 int main()
@@ -324,5 +333,14 @@ int main()
     ll i=0;
     Node* root3 = createTreePreOrderInOrder(inorder,preorder,0,n-1,i);
     cout<<root3;
+    cout<<"Input Array size and inorder postOrder traversal of tree"<<endl;
+    cin>>n;
+    delete inorder;
+    inorder = new ll[n];
+    postorder = new ll[n];
+    ArrIn(n) cin>>inorder[i];
+    ArrIn(n) cin>>postorder[i];
+    Node* root4 = createTreePostOrderInOrder(inorder,postorder,0,n-1,0,n-1);
+    cout<<root4;
     return 0;
 }    

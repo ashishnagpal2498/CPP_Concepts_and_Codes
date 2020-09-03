@@ -205,6 +205,14 @@ void oddEven2(Node* &head){
         }
     }
 }
+// Delete Node from Linked List Not given header
+void DeleteNode(Node* node){
+    node->data =node->next->data;
+    Node* waste = node;
+    node->next = node->next->next;
+    delete waste;
+}
+
 int main()
 {
     // ios_base::sync_with_stdio(false);
