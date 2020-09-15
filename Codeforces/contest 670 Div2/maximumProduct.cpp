@@ -16,7 +16,7 @@ int main()
     while(t--){
         cin>>n;
         ArrIn(n) cin>>arr[i];
-            
+        
     }
     return 0;
 }    
