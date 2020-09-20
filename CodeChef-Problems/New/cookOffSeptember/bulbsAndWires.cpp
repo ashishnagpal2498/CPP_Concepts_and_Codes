@@ -24,11 +24,16 @@ int main()
             if(s[i]=='1'){
                 if(k && i-1>=0 && s[i-1] != '1'){
                     k--;
+                    if(ans[i-1] != 'X')
                     ans[i-1] ='X';
+                    else {
+                        ans[i-1] = 'Y';
+                    }
                     // wire Cut ->
                 }
                 if(k && i+1<n && s[i+1] != '1'){
                     k--;
+
                     ans[i+1] = 'X';
 
                     // If both condition will run ->
@@ -43,13 +48,18 @@ int main()
          int count=0;
          while(i<n){
 
-            if(s[i]==ans[i] || s[i] == '0' && ans[i] =='X');
+            if(s[i]==ans[i] || s[i] == '0' && (ans[i] =='Y' || ans[i] == 'X') );
             else{
-                if(i-1>=0 && s[i-1] !='1' && ans[i-1] != 'X') count++;
-                if(i+1<n && s[i+1] != '1' && ans[i+1] != 'X'){
+                if(i-1>=0 && s[i-1] !='1' && ans[i-1] != 'Y') {
+                    ans[i-1] == 'Y';
+                    count++;
+                }
+                if(i+1<n && s[i+1] != '1' && (ans[i+1] != 'X' || ans[i+1] != 'Y')){
                     count++;
                     i++;
-                    s[i] = 'X';
+                    if(ans[i] == 'X')
+                    ans[i] = 'Y';
+                    else ans[i] = 'X';
                 }
             }
             i++;
