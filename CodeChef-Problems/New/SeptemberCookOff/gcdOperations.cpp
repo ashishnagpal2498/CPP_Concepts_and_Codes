@@ -21,16 +21,19 @@ int main()
         for (int i = 1; i <= n; i++) {
             flag = false;
             if (a[i] == b[i]) {
-                flag = true;
+                flag = true;cout<<"vl eq"<<endl;
                 continue;
             }
             if (b[i] > i)
             {   for (int j = i + 1; j <= n; j++) {
+                cout<<"Here"<<endl;
                     ll v =  __gcd(a[i], a[j]);
+                    cout<<v<<endl;
                     if (v == b[i]) {
                         a[i] = b[i];
                         a[j] = b[i];
                         flag = true;
+                        cout<<"Val true";
                         break;
                     }
                 }
