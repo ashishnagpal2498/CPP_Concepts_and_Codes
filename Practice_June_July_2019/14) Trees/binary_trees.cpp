@@ -161,7 +161,6 @@ myPair2 subsetSum(node*root)
     p.excl = max(leftTree.incl,leftTree.excl) + max(rightTree.incl,rightTree.excl);
 
     return p;
-
 }
 
 
