@@ -13,10 +13,10 @@ int main()
     while(t--){
         ll sum = 0;
         bool flag = false;
-        int index = 0;
+        ll index = 0;
         cin>>n>>k;
         for(int i=0;i<n;i++) cin>>arr[i];
-        int i=0; // day -> 
+        ll i=0; // day -> 
         for(;i<n;i++){
             arr[i]+=sum;
             // cout<<arr[i]<<" -> "<<endl;
