@@ -57,6 +57,8 @@ int main()
     a.insert(a.begin()+2,6);
     // erases a single value provided ->
     a.erase(a.begin());
+    string s99 = to_string(837);
+    cout<<s99<<endl;
     cout<<"Vector -> "<<a[0]<<" "<<a[1]<<endl;
     return 0;
 }    
