@@ -63,6 +63,7 @@ public:
                     dist[neigh] = dist[f] +1;
                     q.push(neigh);
                 }
+                // Check if the position is "B" - 
                 int index1 = (int) (neigh[0] - '0');
                 int index2 = (int)(neigh[2]- '0');
                 if(board[index1][index2] == 'B'){
