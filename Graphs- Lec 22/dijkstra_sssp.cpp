@@ -6,6 +6,7 @@
 using namespace std;
 template<typename T>
 class Graph{
+    // src -> dest and weight to go to that
     map<T,list<pair<T,int> > > adjList;
 public:
     Graph()
