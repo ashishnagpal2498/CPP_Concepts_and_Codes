@@ -5,6 +5,7 @@
 #include<vector>
 #include<map>
 using namespace std;
+//  Initialising vector - take size mandatory - 
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
     vector<string> copy = strs;
     map<string,int> indexs;
@@ -20,27 +21,27 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
          }
     }
     vector<vector<string> > ans(m);
-    cout<<"Ans size -- "<<ans.size()<<endl;
-    for(int i=0;i<copy.size();i++)
-    {
-        cout<<copy[i]<<"  --  ";
-    }
+    // cout<<"Ans size -- "<<ans.size()<<endl;
+    // for(int i=0;i<copy.size();i++)
+    // {
+    //     cout<<copy[i]<<"  --  ";
+    // }
 
     for(int i=0;i<strs.size();i++)
     {       int indexVal = indexs[copy[i]];
             // element has come onces -
-        cout<<"index val "<<indexVal<<endl;
+        // cout<<"index val "<<indexVal<<endl;
             ans[indexVal].push_back(strs[i]);
     }
-    cout<<"ANS -:"<<endl;
-     for(int i=0;i<m;i++)
-    {   cout<<ans[i].size()<<"  ";
-        for(int j=0;j<ans[i].size();j++)
-        {   
-            cout<<ans[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    // cout<<"ANS -:"<<endl;
+    //  for(int i=0;i<m;i++)
+    // {   cout<<ans[i].size()<<"  ";
+    //     for(int j=0;j<ans[i].size();j++)
+    //     {   
+    //         cout<<ans[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
     return ans;
 }
 int main()
