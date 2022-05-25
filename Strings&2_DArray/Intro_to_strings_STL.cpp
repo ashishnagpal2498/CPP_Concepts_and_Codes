@@ -18,7 +18,7 @@ int main()
     int largestlen=a[0].length();
     string largeststr=a[0];
     for(int i=1;i<n;i++) 
-        { cout<<a[i];
+        { //cout<<a[i];
             if(a[i].length()>largestlen)
             {   largestlen=a[i].length();
                 largeststr=a[i];
