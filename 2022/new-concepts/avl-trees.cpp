@@ -140,6 +140,7 @@ Node* deleteNode(Node* root, int d){
 
     root->height = 1+ max(height(root->left),height(root->right));
 
+    // Root node -
     int reBalanceFactor = balanceFactor(root);
 
     // left- left case -
