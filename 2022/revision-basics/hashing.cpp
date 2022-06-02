@@ -99,7 +99,12 @@ public:
     void insert(string s,int val){
 
         int hashIndex = hashFunc(s);
-
+        T* temp = search(s);
+        if(temp != NULL ){
+            // Make the value from the address we got
+            *temp = val;
+            return;
+        }
         Node<T> * newNode = new Node<T>(s,val);
         newNode->next = bucket[hashIndex];
         bucket[hashIndex] = newNode;
@@ -139,19 +144,34 @@ public:
             cout<<"\n";
         }
     }
+
+    T& operator[](string key){
+        T* temp = search(key);
+        if(temp == NULL){
+            T garbage;
+            insert(key,garbage);
+            
+            temp = search(key);
+        }
+
+        return *temp;
+
+    }
 };
 
 int main(){
     HashTable<int> tb(7);
     tb.insert("Mango",100);
-    tb.insert("Apple",100);
-    tb.insert("Banana",100);
-    tb.insert("Chiku",100);
-    tb.insert("Orange",100);
-    tb.insert("Papaya",100);
+    cout<<"Square brackets operator -> "<<tb["Banana"]<<"\n";
+    tb.insert("Apple",120);
+    tb.insert("Banana",140);
+    tb.insert("Chiku",163);
+    tb.insert("Orange",169);
+    tb.insert("Papaya",98);
     tb.print();
     int* findNode = tb.search("Orange");
     if(findNode == NULL) cout<<"Node not found\n";
-    else cout<<"Value is "<<*findNode;
+    else cout<<"Value is "<<*findNode<<"\n";
+    cout<<"Sq brackets "<<tb["Banana"]<<endl;
     return 0;
 }
