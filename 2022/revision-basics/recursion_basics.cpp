@@ -54,6 +54,8 @@ int linear_search(int arr[],int n,int key){
     else return chhotaArray+1; 
 }
 
+
+
 int main(){
     int n;
     // cin>>n;

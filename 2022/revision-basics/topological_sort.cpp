@@ -116,6 +116,40 @@ public:
         }
         return false;
     }
+
+    // CYCLE detection using DFS for directed Graphs -> Back Edge
+    // A back-edge is an edge to a node itself or its ancestor
+    bool dfsHelperCycle(T node, map<T,bool> &visited, map<T,bool> &recStack){
+        
+        recStack[node] = true;
+        visited[node] = true;
+
+        for(T neigh: adjList[node]){
+            if(!visited[neigh]) {
+                bool smallAns = dfsHelperCycle(neigh,visited,recStack);
+                if(smallAns) return true;
+            }
+            else if(recStack[node] && visited[node]) return true;
+        }
+        recStack[node] = false;
+        return false;
+    }
+
+    bool cycleDFS(){
+        map<T,bool> visited;
+        map<T,bool> recStack;
+
+        for(auto i:adjList){
+            if(!visited[i.first]){
+           bool smallAns = dfsHelperCycle(i.first,visited,recStack);
+            if(smallAns) return true;
+            }
+        }
+        return false;
+    }
+
+    // Dijikstra's Algorithm -
+    
 };
 
 int main(){
@@ -139,12 +173,13 @@ int main(){
 
     // Cycle Detection 
     Graph<int> g;
-    g.addEdge(0,1);
-    g.addEdge(1,2);
-    g.addEdge(2,3);
+    g.addEdge(0,1,false);
+    g.addEdge(1,2,false);
+    g.addEdge(2,3,false);
     // g.addEdge(3,0);
-   g.addEdge(2,0);
-    g.addEdge(3,4);
-    g.cycleDetectionBFS(0) ? cout<<"Cycle exist\n" : cout<<"Graph is Acyclic\n";
+   // g.addEdge(2,0,false);
+    g.addEdge(3,4,false);
+    // g.cycleDetectionBFS(0) ? cout<<"Cycle exist\n" : cout<<"Graph is Acyclic\n";
+    g.cycleDFS() ? cout<<"Cycle exist\n" : cout<<"Graph is Acyclic\n";
     return 0;
 }

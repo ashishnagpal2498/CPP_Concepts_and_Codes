@@ -1,0 +1,61 @@
+Graphs Implementation
+
+1. Representation of Graph -
+    a. Adjency List 
+        Node      Linked list to that -> consist of Edges
+        ___
+       | 0 | ->  | 1 | -> | 0 |
+       -----
+        ___
+       | 1 | ->  | 0 | -> | 2 | -> | 3 |     Graph will be like a Square with Diagonal connect
+       -----
+
+        ___
+       | 2 | ->  | 1 | -> | 3 |
+       -----
+
+        ___
+       | 3 | ->  | 2 | -> | 0 |
+       -----
+
+
+    b. Adjency Matrix
+
+        - If an edge is present between two nodes then the value will be 1
+        - V x V matrix
+
+           |    0   1   2   3
+        ___|_____________________
+        0  |    0   1   0   1   |
+           |                    |
+        1  |    1   0   1   1   |
+           |                    |
+        2  |    0   1   0   1   |   
+           |                    |
+        3  |    1   1   1   1   |
+        ___|____________________|
+
+2. BFS - Explore all the neighbouring node in Depth wise -
+
+3. DFS - explore the Depth of the Graph first and then proceed
+
+4. Application of DFS 
+    a. Cycle detection of a Directed Graph 
+        - using the concept of Back edge = Backedge is an edge which is pointing to the node itself or one of its ancestor
+        - if node already visited and it is present in stack
+    
+    b. Find path between two vertices u and v
+        - maintain a stack for path and run the DFS
+        - As soon as the node is received - return
+
+    c. Topological Sort
+        - Topological Sorting is mainly used for scheduling jobs from the given dependencies among jobs
+        - Using a list and adding at the head of list
+
+    d. Connected components in a Graph
+
+5. Application of BFS
+    a. Cycle Detection
+
+    b. Single source shortest path ( Undirected weighted and unweighted graph ) - Dijikstra's Algorithm
+
